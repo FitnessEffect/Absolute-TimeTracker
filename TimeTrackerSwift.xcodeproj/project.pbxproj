@@ -7,21 +7,102 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521E4ADF1E1DFE6D009025E5 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */; };
+		52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */; };
+		52236A811E2E72E700F1D3AD /* GraphViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236A801E2E72E700F1D3AD /* GraphViewWindow.swift */; };
+		52683FFD1E01A2B00047B283 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */; };
+		52683FFF1E0229DE0047B283 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52683FFE1E0229DE0047B283 /* Reachability.swift */; };
 		52D252761DFEEEF2000A0289 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252751DFEEEF2000A0289 /* AppDelegate.swift */; };
-		52D252781DFEEEF2000A0289 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252771DFEEEF2000A0289 /* ViewController.swift */; };
+		52D252781DFEEEF2000A0289 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252771DFEEEF2000A0289 /* LoginViewController.swift */; };
 		52D2527B1DFEEEF2000A0289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D252791DFEEEF2000A0289 /* Main.storyboard */; };
 		52D2527D1DFEEEF2000A0289 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D2527C1DFEEEF2000A0289 /* Assets.xcassets */; };
 		52D252801DFEEEF2000A0289 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D2527E1DFEEEF2000A0289 /* LaunchScreen.storyboard */; };
+		52D252881DFEEFCE000A0289 /* CreateEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252871DFEEFCE000A0289 /* CreateEntryViewController.swift */; };
+		52D2528D1DFEF946000A0289 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2528C1DFEF946000A0289 /* ProjectTableViewCell.swift */; };
+		52D252901DFF015B000A0289 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2528F1DFF015B000A0289 /* Entry.swift */; };
+		52D2529F1DFF81AC000A0289 /* ABSConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2529C1DFF81AC000A0289 /* ABSConnection.m */; };
+		52D252A01DFF81AC000A0289 /* ABSSessionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D2529E1DFF81AC000A0289 /* ABSSessionData.m */; };
+		52D252A21DFF846A000A0289 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252A11DFF846A000A0289 /* CalendarViewController.swift */; };
+		52D252A51E003565000A0289 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252A41E003565000A0289 /* Project.swift */; };
+		52D252A71E0037DE000A0289 /* ProjectModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252A61E0037DE000A0289 /* ProjectModule.swift */; };
+		52D252AD1E00382F000A0289 /* ProjectCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252AC1E00382F000A0289 /* ProjectCategory.swift */; };
+		52D252B01E003BE1000A0289 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D252AF1E003BE1000A0289 /* KeychainWrapper.m */; };
+		52F8B80A1E13397E001E86B1 /* EntriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B8091E13397E001E86B1 /* EntriesViewController.swift */; };
+		52F8B80C1E133BA8001E86B1 /* EntryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B80B1E133BA8001E86B1 /* EntryTableViewCell.swift */; };
+		52F8B80E1E134D93001E86B1 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B80D1E134D93001E86B1 /* PickerViewController.swift */; };
+		52F8B8141E148D55001E86B1 /* DateConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F8B8131E148D55001E86B1 /* DateConverter.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		52236AB11E31351200F1D3AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		52236AB31E31351200F1D3AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06B120D51D811E6200D14B02;
+			remoteInfo = ChartsRealm;
+		};
+		52236AB51E31351200F1D3AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		52236A921E2FA97400F1D3AD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
+		52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
+		52236A801E2E72E700F1D3AD /* GraphViewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewWindow.swift; sourceTree = "<group>"; };
+		52236AAB1E31351200F1D3AD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
+		52683FFE1E0229DE0047B283 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		52D252721DFEEEF2000A0289 /* TimeTrackerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTrackerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D252751DFEEEF2000A0289 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52D252771DFEEEF2000A0289 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		52D252771DFEEEF2000A0289 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		52D2527A1DFEEEF2000A0289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52D2527C1DFEEEF2000A0289 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52D2527F1DFEEEF2000A0289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52D252811DFEEEF2000A0289 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52D252871DFEEFCE000A0289 /* CreateEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateEntryViewController.swift; sourceTree = "<group>"; };
+		52D2528C1DFEF946000A0289 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		52D2528F1DFF015B000A0289 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		52D252941DFF7E21000A0289 /* TimeTrackerSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TimeTrackerSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		52D2529B1DFF81AB000A0289 /* ABSConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSConnection.h; sourceTree = "<group>"; };
+		52D2529C1DFF81AC000A0289 /* ABSConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSConnection.m; sourceTree = "<group>"; };
+		52D2529D1DFF81AC000A0289 /* ABSSessionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSSessionData.h; sourceTree = "<group>"; };
+		52D2529E1DFF81AC000A0289 /* ABSSessionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSSessionData.m; sourceTree = "<group>"; };
+		52D252A11DFF846A000A0289 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		52D252A41E003565000A0289 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Project.swift; path = ../Project.swift; sourceTree = "<group>"; };
+		52D252A61E0037DE000A0289 /* ProjectModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectModule.swift; path = ../ProjectModule.swift; sourceTree = "<group>"; };
+		52D252AC1E00382F000A0289 /* ProjectCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProjectCategory.swift; path = ../ProjectCategory.swift; sourceTree = "<group>"; };
+		52D252AE1E003BE1000A0289 /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
+		52D252AF1E003BE1000A0289 /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
+		52D252B11E003C27000A0289 /* TimeTrackerSwift.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TimeTrackerSwift.entitlements; sourceTree = "<group>"; };
+		52F8B8091E13397E001E86B1 /* EntriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntriesViewController.swift; sourceTree = "<group>"; };
+		52F8B80B1E133BA8001E86B1 /* EntryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryTableViewCell.swift; path = ../EntryTableViewCell.swift; sourceTree = "<group>"; };
+		52F8B80D1E134D93001E86B1 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		52F8B8131E148D55001E86B1 /* DateConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,9 +116,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		521E4AE01E1E006C009025E5 /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				52F8B8131E148D55001E86B1 /* DateConverter.swift */,
+				521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */,
+			);
+			name = Converter;
+			sourceTree = "<group>";
+		};
+		52236AAC1E31351200F1D3AD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52236AB21E31351200F1D3AD /* Charts.framework */,
+				52236AB41E31351200F1D3AD /* ChartsRealm.framework */,
+				52236AB61E31351200F1D3AD /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		52D252691DFEEEF2000A0289 = {
 			isa = PBXGroup;
 			children = (
+				52236AAB1E31351200F1D3AD /* Charts.xcodeproj */,
 				52D252741DFEEEF2000A0289 /* TimeTrackerSwift */,
 				52D252731DFEEEF2000A0289 /* Products */,
 			);
@@ -54,14 +155,61 @@
 		52D252741DFEEEF2000A0289 /* TimeTrackerSwift */ = {
 			isa = PBXGroup;
 			children = (
-				52D252751DFEEEF2000A0289 /* AppDelegate.swift */,
-				52D252771DFEEEF2000A0289 /* ViewController.swift */,
+				52D252B11E003C27000A0289 /* TimeTrackerSwift.entitlements */,
+				52D252A31E0030F0000A0289 /* Objects */,
+				52D2529B1DFF81AB000A0289 /* ABSConnection.h */,
+				52D2529C1DFF81AC000A0289 /* ABSConnection.m */,
+				52D2529D1DFF81AC000A0289 /* ABSSessionData.h */,
+				52D2529E1DFF81AC000A0289 /* ABSSessionData.m */,
+				52D252AE1E003BE1000A0289 /* KeychainWrapper.h */,
+				52D252AF1E003BE1000A0289 /* KeychainWrapper.m */,
+				52683FFE1E0229DE0047B283 /* Reachability.swift */,
+				52D2528E1DFEF953000A0289 /* Custom Cell */,
+				52D252891DFEF002000A0289 /* View Controllers */,
 				52D252791DFEEEF2000A0289 /* Main.storyboard */,
+				52D252751DFEEEF2000A0289 /* AppDelegate.swift */,
 				52D2527C1DFEEEF2000A0289 /* Assets.xcassets */,
 				52D2527E1DFEEEF2000A0289 /* LaunchScreen.storyboard */,
 				52D252811DFEEEF2000A0289 /* Info.plist */,
+				52D252941DFF7E21000A0289 /* TimeTrackerSwift-Bridging-Header.h */,
 			);
 			path = TimeTrackerSwift;
+			sourceTree = "<group>";
+		};
+		52D252891DFEF002000A0289 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */,
+				52D252871DFEEFCE000A0289 /* CreateEntryViewController.swift */,
+				52D252A11DFF846A000A0289 /* CalendarViewController.swift */,
+				52D252771DFEEEF2000A0289 /* LoginViewController.swift */,
+				52F8B8091E13397E001E86B1 /* EntriesViewController.swift */,
+				52F8B80D1E134D93001E86B1 /* PickerViewController.swift */,
+				52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */,
+				52236A801E2E72E700F1D3AD /* GraphViewWindow.swift */,
+				521E4AE01E1E006C009025E5 /* Converter */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		52D2528E1DFEF953000A0289 /* Custom Cell */ = {
+			isa = PBXGroup;
+			children = (
+				52D2528C1DFEF946000A0289 /* ProjectTableViewCell.swift */,
+				52F8B80B1E133BA8001E86B1 /* EntryTableViewCell.swift */,
+			);
+			name = "Custom Cell";
+			sourceTree = "<group>";
+		};
+		52D252A31E0030F0000A0289 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				52D252AC1E00382F000A0289 /* ProjectCategory.swift */,
+				52D252A61E0037DE000A0289 /* ProjectModule.swift */,
+				52D252A41E003565000A0289 /* Project.swift */,
+				52D2528F1DFF015B000A0289 /* Entry.swift */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +222,7 @@
 				52D2526E1DFEEEF2000A0289 /* Sources */,
 				52D2526F1DFEEEF2000A0289 /* Frameworks */,
 				52D252701DFEEEF2000A0289 /* Resources */,
+				52236A921E2FA97400F1D3AD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -96,7 +245,14 @@
 				TargetAttributes = {
 					52D252711DFEEEF2000A0289 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = JE9824DC59;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -111,12 +267,42 @@
 			mainGroup = 52D252691DFEEEF2000A0289;
 			productRefGroup = 52D252731DFEEEF2000A0289 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 52236AAC1E31351200F1D3AD /* Products */;
+					ProjectRef = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				52D252711DFEEEF2000A0289 /* TimeTrackerSwift */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		52236AB21E31351200F1D3AD /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 52236AB11E31351200F1D3AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52236AB41E31351200F1D3AD /* ChartsRealm.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ChartsRealm.framework;
+			remoteRef = 52236AB31E31351200F1D3AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		52236AB61E31351200F1D3AD /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 52236AB51E31351200F1D3AD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		52D252701DFEEEF2000A0289 /* Resources */ = {
@@ -136,8 +322,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52D252781DFEEEF2000A0289 /* ViewController.swift in Sources */,
+				52D252901DFF015B000A0289 /* Entry.swift in Sources */,
+				52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */,
+				52683FFD1E01A2B00047B283 /* TimePickerViewController.swift in Sources */,
+				52D252A21DFF846A000A0289 /* CalendarViewController.swift in Sources */,
+				52D2529F1DFF81AC000A0289 /* ABSConnection.m in Sources */,
+				52F8B80A1E13397E001E86B1 /* EntriesViewController.swift in Sources */,
+				52D2528D1DFEF946000A0289 /* ProjectTableViewCell.swift in Sources */,
+				52D252A01DFF81AC000A0289 /* ABSSessionData.m in Sources */,
+				52236A811E2E72E700F1D3AD /* GraphViewWindow.swift in Sources */,
+				52D252AD1E00382F000A0289 /* ProjectCategory.swift in Sources */,
+				52F8B8141E148D55001E86B1 /* DateConverter.swift in Sources */,
+				52F8B80C1E133BA8001E86B1 /* EntryTableViewCell.swift in Sources */,
+				52D252A71E0037DE000A0289 /* ProjectModule.swift in Sources */,
+				52D252781DFEEEF2000A0289 /* LoginViewController.swift in Sources */,
+				52F8B80E1E134D93001E86B1 /* PickerViewController.swift in Sources */,
+				52D252881DFEEFCE000A0289 /* CreateEntryViewController.swift in Sources */,
+				521E4ADF1E1DFE6D009025E5 /* TimeConverter.swift in Sources */,
+				52D252B01E003BE1000A0289 /* KeychainWrapper.m in Sources */,
 				52D252761DFEEEF2000A0289 /* AppDelegate.swift in Sources */,
+				52683FFF1E0229DE0047B283 /* Reachability.swift in Sources */,
+				52D252A51E003565000A0289 /* Project.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,11 +462,21 @@
 		52D252851DFEEEF2000A0289 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TimeTrackerSwift/TimeTrackerSwift.entitlements;
+				DEVELOPMENT_TEAM = JE9824DC59;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"TIME_TRACKER=1",
+				);
 				INFOPLIST_FILE = TimeTrackerSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-auvergne.stefan.TimeTrackerSwift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TimeTrackerSwift/TimeTrackerSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -269,11 +484,17 @@
 		52D252861DFEEEF2000A0289 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TimeTrackerSwift/TimeTrackerSwift.entitlements;
+				DEVELOPMENT_TEAM = JE9824DC59;
+				GCC_PREPROCESSOR_DEFINITIONS = "TIME_TRACKER=1";
 				INFOPLIST_FILE = TimeTrackerSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-auvergne.stefan.TimeTrackerSwift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TimeTrackerSwift/TimeTrackerSwift-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -297,6 +518,7 @@
 				52D252861DFEEEF2000A0289 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
