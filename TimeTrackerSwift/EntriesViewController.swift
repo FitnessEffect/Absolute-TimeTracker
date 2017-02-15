@@ -19,7 +19,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     var spinner = UIActivityIndicatorView()
     var entryCount = 0
     var selectedDate = NSDate()
-    var resultSearchController = UISearchController()
     var daysSections = [String:Any]()
     var selectedWeek = ""
     var dateSelected = ""
@@ -28,17 +27,17 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad(){
         super.viewDidLoad()
         displayCurrentWeek()
-        
+        dateSelected = DateConverter.getCurrentDate()
         spinner = UIActivityIndicatorView()
         spinner.frame = CGRect(x:(self.view.frame.width/2)-25, y:(self.view.frame.height/2)-25, width:50, height:50)
+        spinner.transform = CGAffineTransform(scaleX: 2.0, y: 2.0);
         spinner.alpha = 0
         view.addSubview(spinner)
-        
+        spinner.color = UIColor.white
         date.layer.cornerRadius = 10.0
         date.clipsToBounds = true
         date.layer.borderWidth = 1
         date.layer.borderColor = UIColor.black.cgColor
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(EntriesViewController.orientationChanged), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
@@ -50,9 +49,15 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        refreshGeneralData()
-        //displayCurrentWeek()
-        //tableView.reloadData()
+        refreshGeneralDataForSelectedWeek()
+        
+        if UIDevice.current.orientation.isLandscape {
+            presentPopoverGraph()
+        }
+    }
+    
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask{
+        return UIInterfaceOrientationMask.portrait
     }
     
     func setNewDate(dateStr:String){
@@ -62,37 +67,27 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func selectedWeekDisplay(dateStr:String){
-        
         let tempDate = DateConverter.stringToDate(dateStr: dateStr) as NSDate
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        
-        let tempEndDay = DateConverter.getFridayForWeek(selectedDate: tempDate)
+        let tempEndDay = DateConverter.getThrusdayForWeek(selectedDate: tempDate)
         let endDate = dateFormatter.string(from: tempEndDay as Date)
-        
-        let tempStartDay = DateConverter.getPreviousSaturdayForWeek(selectedDate:tempDate)
+        let tempStartDay = DateConverter.getPreviousFridayForWeek(selectedDate:tempDate)
         let startDate = dateFormatter.string(from: tempStartDay as Date)
-        
         date.setTitle(startDate + " - " + endDate,for: .normal)
     }
     
     func displayCurrentWeek(){
-        
         let currentDate = Date()
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         selectedDate = currentDate as NSDate
-        let tempEndDay = DateConverter.getFridayForWeek(selectedDate: selectedDate)
+        let tempEndDay = DateConverter.getThrusdayForWeek(selectedDate: selectedDate)
         let endDate = dateFormatter.string(from: tempEndDay as Date)
-        
-        let tempStartDay = DateConverter.getPreviousSaturdayForWeek(selectedDate:selectedDate)
+        let tempStartDay = DateConverter.getPreviousFridayForWeek(selectedDate:selectedDate)
         let startDate = dateFormatter.string(from: tempStartDay as Date)
-        
         date.setTitle(startDate + " - " + endDate,for: .normal)
     }
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -101,39 +96,48 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-            var array:[Any]?
+        var array:[Any]?
+        
+        switch(section){
+        case 0:
+            array = daysSections["Friday"] as! [Any]!
+        case 1:
+            array = daysSections["Saturday"] as! [Any]!
+        case 2:
+            array = daysSections["Sunday"] as! [Any]!
+        case 3:
+            array = daysSections["Monday"] as! [Any]!
+        case 4:
+            array = daysSections["Tuesday"] as! [Any]!
+        case 5:
+            array = daysSections["Wednesday"] as! [Any]!
+        case 6:
+            array = daysSections["Thursday"] as! [Any]!
             
-            switch(section){
-            case 0:
-                array = daysSections["Saturday"] as! [Any]!
-            case 1:
-                array = daysSections["Sunday"] as! [Any]!
-            case 2:
-                array = daysSections["Monday"] as! [Any]!
-            case 3:
-                array = daysSections["Tuesday"] as! [Any]!
-            case 4:
-                array = daysSections["Wednesday"] as! [Any]!
-            case 5:
-                array = daysSections["Thursday"] as! [Any]!
-            case 6:
-                array = daysSections["Friday"] as! [Any]!
-            default:
-                return 0;
-            }
-            if array == nil{
-                return 0
-            }
-            return array!.count;
+        default:
+            return 0;
+        }
+        if array == nil{
+            return 0
+        }
+        return array!.count;
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         var sectionTitle = ""
         var tempArray = [Entry]()
         
         switch(section){
         case 0:
+            if daysSections["Friday"] != nil{
+                tempArray = daysSections["Friday"] as! [Entry]
+                if tempArray.count == 0{
+                    
+                }else{
+                    sectionTitle = "Friday"
+                }
+            }
+        case 1:
             if daysSections["Saturday"] != nil{
                 tempArray = daysSections["Saturday"] as! [Entry]
                 if tempArray.count == 0{
@@ -142,7 +146,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                     sectionTitle = "Saturday"
                 }
             }
-        case 1:
+        case 2:
             if daysSections["Sunday"] != nil{
                 tempArray = daysSections["Sunday"] as! [Entry]
                 if tempArray.count == 0{
@@ -151,7 +155,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                     sectionTitle = "Sunday"
                 }
             }
-        case 2:
+        case 3:
             if daysSections["Monday"] != nil{
                 tempArray = daysSections["Monday"] as! [Entry]
                 if tempArray.count == 0{
@@ -160,7 +164,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                     sectionTitle = "Monday"
                 }
             }
-        case 3:
+        case 4:
             if daysSections["Tuesday"] != nil{
                 tempArray = daysSections["Tuesday"] as! [Entry]
                 if tempArray.count == 0{
@@ -169,7 +173,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                     sectionTitle = "Tuesday"
                 }
             }
-        case 4:
+        case 5:
             if daysSections["Wednesday"] != nil{
                 tempArray = daysSections["Wednesday"] as! [Entry]
                 if tempArray.count == 0{
@@ -178,22 +182,13 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                     sectionTitle = "Wednesday"
                 }
             }
-        case 5:
+        case 6:
             if daysSections["Thursday"] != nil{
                 tempArray = daysSections["Thursday"] as! [Entry]
                 if tempArray.count == 0{
                     
                 }else{
                     sectionTitle = "Thursday"
-                }
-            }
-        case 6:
-            if daysSections["Friday"] != nil{
-                tempArray = daysSections["Friday"] as! [Entry]
-                if tempArray.count == 0{
-                    
-                }else{
-                    sectionTitle = "Friday"
                 }
             }
         default:
@@ -211,10 +206,13 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
             cell.projectNameOutlet.text =  entry.projectName as String
             let duration = TimeConverter.calculateDuration(startTime: entry.startHour, endTime: entry.endHour)
             let time = TimeConverter.formatDurationFromSeconds(durationInSeconds: duration)
-            cell.entryDurationOutlet.text = time + " (" + TimeConverter.formatTime(time: entry.startHour as String) + " → " + TimeConverter.formatTime(time: entry.endHour as String) + ")"
+            if entry.startHour.characters.contains("m"){
+                cell.entryDurationOutlet.text = time + " (" + entry.startHour + " → " + entry.endHour + ")"
+            }else{
+                cell.entryDurationOutlet.text = time + " (" + TimeConverter.formatTime(time: entry.startHour as String) + " → " + TimeConverter.formatTime(time: entry.endHour as String) + ")"
+            }
             cell.numberOutlet.text = String(indexPath.row + 1)
         }
-        
         return cell
     }
     
@@ -223,85 +221,39 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch(indexPath.section){
         case 0:
-            array = daysSections["Saturday"] as! [Entry]
-            
-        case 1:
-            array = daysSections["Sunday"] as! [Entry]
-            
-        case 2:
-            array = daysSections["Monday"] as! [Entry]
-            
-        case 3:
-            array = daysSections["Tuesday"] as! [Entry]
-            
-        case 4:
-            array = daysSections["Wednesday"] as! [Entry]
-            
-        case 5:
-            array = daysSections["Thursday"] as! [Entry]
-            
-        case 6:
             array = daysSections["Friday"] as! [Entry]
-            
+        case 1:
+            array = daysSections["Saturday"] as! [Entry]
+        case 2:
+            array = daysSections["Sunday"] as! [Entry]
+        case 3:
+            array = daysSections["Monday"] as! [Entry]
+        case 4:
+            array = daysSections["Tuesday"] as! [Entry]
+        case 5:
+            array = daysSections["Wednesday"] as! [Entry]
+        case 6:
+            array = daysSections["Thursday"] as! [Entry]
         default:
             return []
         }
-        
         return array
     }
-    
-    //    func categoriesAbbreviationToFull(string:String)->String{
-    //        var newString = ""
-    //
-    //        if string == "DBUG"{
-    //            newString = "Debugging"
-    //        }else if string == "DEV"{
-    //            newString = "Development"
-    //        }else if string == "DSN"{
-    //            newString = "Design"
-    //        }else if string == "PM"{
-    //            newString = "Project Management"
-    //        }else if string == "TEST"{
-    //            newString = "Testing"
-    //        }
-    //
-    //        return newString
-    //    }
     
     @IBAction func backBtn(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    func refreshGeneralData(){
+    func refreshGeneralDataForSelectedWeek(){
+        spinner.startAnimating()
         UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
-        getCurrentWeekID()
-    }
-    
-    func getCurrentWeekID(){
-        spinner = UIActivityIndicatorView()
-        
-        UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
-        
-        let date = NSDate()
-        let currentDate = DateConverter().dateAt00(date: date)
-        ABSConnection.shared().fetchWeekEndingsCompletionBlock{ (response) in
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            if ((response) != nil) {
-                
-                let id = DateConverter.getidFromResponse(selectedDate: DateConverter.getFridayForWeek(selectedDate: currentDate), response: response as! [[String : Any]]) as NSNumber!
-                self.selectedWeekID = id!
-                ABSSessionData().selectedWeekID = id
-                self.refreshSelectedWeekData(id: id!)
-                self.displaySelectedWeek(dateStr: DateConverter().dayIntervalForWeekEnding(date: currentDate))
-                UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
-            }
-        }
+        getSelectedWeekID(dateStr: dateSelected)
     }
     
     func getSelectedWeekID(dateStr:String){
-        spinner = UIActivityIndicatorView()
-        
-        UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
+        // spinner = UIActivityIndicatorView()
+        // spinner.startAnimating()
+        // UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
         
         let tempDate = DateConverter.stringToDate(dateStr: dateStr) as NSDate
         ABSConnection.shared().fetchWeekEndingsCompletionBlock{ (response) in
@@ -310,10 +262,12 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                 
                 let id = DateConverter.getidFromResponse(selectedDate: DateConverter.getFridayForWeek(selectedDate: tempDate), response: response as! [[String : Any]]) as NSNumber!
                 self.selectedWeekID = id!
+                print(self.selectedWeekID)
                 ABSSessionData().selectedWeekID = id
                 self.refreshSelectedWeekData(id: id!)
                 self.displaySelectedWeek(dateStr: DateConverter().dayIntervalForWeekEnding(date: tempDate))
                 UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
+                self.spinner.stopAnimating()
             }
         }
     }
@@ -325,7 +279,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     func refreshSelectedWeekData(id:NSNumber){
         entries.removeAll()
         daysSections.removeAll()
-        
         if id == 0{
             let alert = UIAlertController(title: "Invalid Date! ", message: "Please select another week!", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -333,9 +286,12 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
             entries.removeAll()
             self.tableView.reloadData()
         }else{
+            spinner.startAnimating()
             UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
+            
             ABSConnection.shared().fetchTimeEntries(forWeek: id, completionBlock:{ (response) in
                 UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
+                self.spinner.stopAnimating()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 if response?.count != 0{
                     for dict in response!{
@@ -388,24 +344,45 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     @IBAction func changeDate(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "showView", sender: self)
+        let xPosition = date.frame.minX + (date.frame.width/2)
+        let yPosition = date.frame.maxY
+        
+        // get a reference to the view controller for the popover
+        
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "calendar") as! CalendarViewController
+        
+        popController.dateBtn = true
+        
+        // set the presentation style
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        // set up the popover presentation controller
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = self.view
+        popController.preferredContentSize = CGSize(width: 300, height: 316)
+        popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
+        
+        // present the popover
+        self.present(popController, animated: true, completion: nil)
     }
     
     @IBAction func logoutBtn(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier :"login") as! LoginViewController
-        self.present(loginVC, animated: true)
         ABSSessionData().clear()
         ABSConnection.shared().logOut()
+        self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func addNewEntry(_ sender: UIBarButtonItem) {
+        let createEntryVC:CreateEntryViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "createEntry") as! CreateEntryViewController
+            createEntryVC.projectsArray = projectsArray
+        present(createEntryVC, animated: true, completion: nil)
+    }
+    
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "AddEntrySegue"{
-            let createEntryVC:CreateEntryViewController = segue.destination as! CreateEntryViewController
-            createEntryVC.projectsArray = projectsArray
-        }else if segue.identifier == "EditEntrySegue"{
+        if segue.identifier == "EditEntrySegue"{
             let createEntryVC:CreateEntryViewController = segue.destination as! CreateEntryViewController
             createEntryVC.projectsArray = projectsArray
             createEntryVC.titleVC = "Edit Entry"
@@ -413,46 +390,33 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
             let selectedRow = (tableView.indexPathForSelectedRow! as NSIndexPath).row
             let tempArr = getEntriesForDayAtIndexPath(indexPath: selectedIndex)
             createEntryVC.activeEntry = tempArr[selectedRow]
-            
-        }else if segue.identifier == "showView"{
-             let xPosition = date.frame.minX + date.frame.width/9
-            let vc = segue.destination as! CalendarViewController
-            vc.dateBtn = true
-            vc.preferredContentSize = CGSize(width: 250, height: 250)
-            vc.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: date.frame.minY/3, width: 0, height: 0)
-            let popController = vc.popoverPresentationController
-            if popController != nil{
-                popController?.delegate = self
-            }
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Gill Sans", size: 22)
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
         var array = [Entry]()
         
         switch(indexPath.section){
         case 0:
-            array = daysSections["Saturday"] as! [Entry]
-            
-        case 1:
-            array = daysSections["Sunday"] as! [Entry]
-            
-        case 2:
-            array = daysSections["Monday"] as! [Entry]
-            
-        case 3:
-            array = daysSections["Tuesday"] as! [Entry]
-            
-        case 4:
-            array = daysSections["Wednesday"] as! [Entry]
-            
-        case 5:
-            array = daysSections["Thursday"] as! [Entry]
-            
-        case 6:
             array = daysSections["Friday"] as! [Entry]
-            
+        case 1:
+            array = daysSections["Saturday"] as! [Entry]
+        case 2:
+            array = daysSections["Sunday"] as! [Entry]
+        case 3:
+            array = daysSections["Monday"] as! [Entry]
+        case 4:
+            array = daysSections["Tuesday"] as! [Entry]
+        case 5:
+            array = daysSections["Wednesday"] as! [Entry]
+        case 6:
+            array = daysSections["Thursday"] as! [Entry]
         default:
             array = []
         }
@@ -464,24 +428,38 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
             let tagID = selectedEntry.entryID
             deleteAlert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {(controller) in
                 self.deleteEntryWithId(entryId:tagID)
-            
             }))
             deleteAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
             self.present(deleteAlert, animated: true, completion: nil)
-            
-           // entries.remove(at: indexPath.row)
-           // tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     func deleteEntryWithId(entryId:NSNumber){
+        spinner.startAnimating()
         UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
         ABSConnection.shared().deleteEntry(withId: entryId, completionBlock: { (reponse) in
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
+            self.spinner.stopAnimating()
             let iD = self.selectedWeekID
             self.refreshSelectedWeekData(id: iD)
         })
+    }
+    
+    func getTimeArray()->[Double]{
+        var times:[Double]!
+        var days = [String:Any]()
+        
+        for key in daysSections{
+            var sum:Float = 0
+            
+            for entry in key.value as! [Entry]{
+                sum += entry.duration
+            }
+            days[key.key] = Double(sum)
+        }
+        times = [days["Friday"] as! Double, days["Saturday"] as! Double, days["Sunday"] as! Double, days["Monday"] as! Double, days["Tuesday"] as! Double, days["Wednesday"] as! Double, days["Thursday"] as! Double]
+        return times
     }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
@@ -489,32 +467,45 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func orientationChanged(){
-        
-        if UIDevice.current.orientation.isLandscape == true {
-            print("Landscape")
-            
-            // get a reference to the view controller for the popover
-        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "graphView") as! GraphViewController
-            //popController.setProjects(array: projectsArray)
-            // set the presentation style
-            //popController.modalPresentationStyle = UIModalPresentationStyle.popover
-           
-            
-            // set up the popover presentation controller
-            //popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
-            popController.popoverPresentationController?.delegate = self
-            popController.popoverPresentationController?.sourceView = self.view
-            popController.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
-            popController.preferredContentSize = CGSize(width: view.bounds.width, height: view.bounds.height)
-            
-            // present the popover
-            self.present(popController, animated: true, completion: nil)
-
-            
-        } else {
-            print("Portrait")
-            self.dismiss(animated: true, completion: nil)
-            
+        if self.isViewLoaded && (self.view.window != nil){
+            if UIDevice.current.orientation.isLandscape == true {
+                if self.presentedViewController is CalendarViewController{
+                    dismiss(animated: true, completion: {self.presentPopoverGraph()})
+                }
+                presentPopoverGraph()
+            }
+        }else{
+            //NOT PROPERLY HANDLING LANDSCAPE
+            if UIDevice.current.orientation.isLandscape == true {
+                return
+            }else{
+                if self.presentedViewController is GraphViewController{
+                    self.dismiss(animated: true, completion: nil)
+                }
+            }
         }
+    }
+    
+    func presentPopoverGraph(){
+        // get a reference to the view controller for the popover
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "graphView") as! GraphViewController
+        
+        let times:[Double]!
+        if entries.count == 0{
+            times = []
+        }else{
+            times = getTimeArray()
+        }
+        popController.weekTimes = times
+        
+        // set up the popover presentation controller
+        //popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = self.view
+        popController.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)
+        popController.preferredContentSize = CGSize(width: view.bounds.width, height: view.bounds.height)
+        
+        // present the popover
+        self.present(popController, animated: true, completion: nil)
     }
 }

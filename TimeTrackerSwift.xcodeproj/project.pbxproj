@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52122BCF1E5390CE00329133 /* StoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52122BCE1E5390CE00329133 /* StoryboardSegue.swift */; };
 		521E4ADF1E1DFE6D009025E5 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */; };
 		52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */; };
-		52236A811E2E72E700F1D3AD /* GraphViewWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236A801E2E72E700F1D3AD /* GraphViewWindow.swift */; };
+		52236ACB1E31367C00F1D3AD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52236AC61E31366600F1D3AD /* Charts.framework */; };
+		52236ACC1E31367C00F1D3AD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52236AC61E31366600F1D3AD /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52683FFD1E01A2B00047B283 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */; };
 		52683FFF1E0229DE0047B283 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52683FFE1E0229DE0047B283 /* Reachability.swift */; };
+		528A9EC11E36D9C90040FA71 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9EC01E36D9C90040FA71 /* ScrollView.swift */; };
 		52D252761DFEEEF2000A0289 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252751DFEEEF2000A0289 /* AppDelegate.swift */; };
 		52D252781DFEEEF2000A0289 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D252771DFEEEF2000A0289 /* LoginViewController.swift */; };
 		52D2527B1DFEEEF2000A0289 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D252791DFEEEF2000A0289 /* Main.storyboard */; };
@@ -34,26 +37,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		52236AB11E31351200F1D3AD /* PBXContainerItemProxy */ = {
+		52236AC51E31366600F1D3AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06165F241D8110E600722320;
 			remoteInfo = Charts;
 		};
-		52236AB31E31351200F1D3AD /* PBXContainerItemProxy */ = {
+		52236AC71E31366600F1D3AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06B120D51D811E6200D14B02;
 			remoteInfo = ChartsRealm;
 		};
-		52236AB51E31351200F1D3AD /* PBXContainerItemProxy */ = {
+		52236AC91E31366600F1D3AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 06165F2E1D8110E600722320;
 			remoteInfo = ChartsTests;
+		};
+		52236ACD1E31367C00F1D3AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,6 +74,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				52236ACC1E31367C00F1D3AD /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,12 +82,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		52122BCE1E5390CE00329133 /* StoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegue.swift; sourceTree = "<group>"; };
 		521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
-		52236A801E2E72E700F1D3AD /* GraphViewWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewWindow.swift; sourceTree = "<group>"; };
-		52236AAB1E31351200F1D3AD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		52236ABF1E31366600F1D3AD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 		52683FFE1E0229DE0047B283 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		528A9EC01E36D9C90040FA71 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		52D252721DFEEEF2000A0289 /* TimeTrackerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeTrackerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D252751DFEEEF2000A0289 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52D252771DFEEEF2000A0289 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52236ACB1E31367C00F1D3AD /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,12 +138,12 @@
 			name = Converter;
 			sourceTree = "<group>";
 		};
-		52236AAC1E31351200F1D3AD /* Products */ = {
+		52236AC01E31366600F1D3AD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52236AB21E31351200F1D3AD /* Charts.framework */,
-				52236AB41E31351200F1D3AD /* ChartsRealm.framework */,
-				52236AB61E31351200F1D3AD /* ChartsTests.xctest */,
+				52236AC61E31366600F1D3AD /* Charts.framework */,
+				52236AC81E31366600F1D3AD /* ChartsRealm.framework */,
+				52236ACA1E31366600F1D3AD /* ChartsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -138,7 +151,7 @@
 		52D252691DFEEEF2000A0289 = {
 			isa = PBXGroup;
 			children = (
-				52236AAB1E31351200F1D3AD /* Charts.xcodeproj */,
+				52236ABF1E31366600F1D3AD /* Charts.xcodeproj */,
 				52D252741DFEEEF2000A0289 /* TimeTrackerSwift */,
 				52D252731DFEEEF2000A0289 /* Products */,
 			);
@@ -184,9 +197,10 @@
 				52D252A11DFF846A000A0289 /* CalendarViewController.swift */,
 				52D252771DFEEEF2000A0289 /* LoginViewController.swift */,
 				52F8B8091E13397E001E86B1 /* EntriesViewController.swift */,
+				52122BCE1E5390CE00329133 /* StoryboardSegue.swift */,
 				52F8B80D1E134D93001E86B1 /* PickerViewController.swift */,
 				52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */,
-				52236A801E2E72E700F1D3AD /* GraphViewWindow.swift */,
+				528A9EC01E36D9C90040FA71 /* ScrollView.swift */,
 				521E4AE01E1E006C009025E5 /* Converter */,
 			);
 			name = "View Controllers";
@@ -227,6 +241,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				52236ACE1E31367C00F1D3AD /* PBXTargetDependency */,
 			);
 			name = TimeTrackerSwift;
 			productName = TimeTrackerSwift;
@@ -240,7 +255,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = com.example;
 				TargetAttributes = {
 					52D252711DFEEEF2000A0289 = {
@@ -269,8 +284,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 52236AAC1E31351200F1D3AD /* Products */;
-					ProjectRef = 52236AAB1E31351200F1D3AD /* Charts.xcodeproj */;
+					ProductGroup = 52236AC01E31366600F1D3AD /* Products */;
+					ProjectRef = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -281,25 +296,25 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		52236AB21E31351200F1D3AD /* Charts.framework */ = {
+		52236AC61E31366600F1D3AD /* Charts.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Charts.framework;
-			remoteRef = 52236AB11E31351200F1D3AD /* PBXContainerItemProxy */;
+			remoteRef = 52236AC51E31366600F1D3AD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		52236AB41E31351200F1D3AD /* ChartsRealm.framework */ = {
+		52236AC81E31366600F1D3AD /* ChartsRealm.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = ChartsRealm.framework;
-			remoteRef = 52236AB31E31351200F1D3AD /* PBXContainerItemProxy */;
+			remoteRef = 52236AC71E31366600F1D3AD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		52236AB61E31351200F1D3AD /* ChartsTests.xctest */ = {
+		52236ACA1E31366600F1D3AD /* ChartsTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = ChartsTests.xctest;
-			remoteRef = 52236AB51E31351200F1D3AD /* PBXContainerItemProxy */;
+			remoteRef = 52236AC91E31366600F1D3AD /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -323,14 +338,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				52D252901DFF015B000A0289 /* Entry.swift in Sources */,
+				528A9EC11E36D9C90040FA71 /* ScrollView.swift in Sources */,
 				52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */,
 				52683FFD1E01A2B00047B283 /* TimePickerViewController.swift in Sources */,
+				52122BCF1E5390CE00329133 /* StoryboardSegue.swift in Sources */,
 				52D252A21DFF846A000A0289 /* CalendarViewController.swift in Sources */,
 				52D2529F1DFF81AC000A0289 /* ABSConnection.m in Sources */,
 				52F8B80A1E13397E001E86B1 /* EntriesViewController.swift in Sources */,
 				52D2528D1DFEF946000A0289 /* ProjectTableViewCell.swift in Sources */,
 				52D252A01DFF81AC000A0289 /* ABSSessionData.m in Sources */,
-				52236A811E2E72E700F1D3AD /* GraphViewWindow.swift in Sources */,
 				52D252AD1E00382F000A0289 /* ProjectCategory.swift in Sources */,
 				52F8B8141E148D55001E86B1 /* DateConverter.swift in Sources */,
 				52F8B80C1E133BA8001E86B1 /* EntryTableViewCell.swift in Sources */,
@@ -347,6 +363,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52236ACE1E31367C00F1D3AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 52236ACD1E31367C00F1D3AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		52D252791DFEEEF2000A0289 /* Main.storyboard */ = {
@@ -386,6 +410,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -435,6 +460,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

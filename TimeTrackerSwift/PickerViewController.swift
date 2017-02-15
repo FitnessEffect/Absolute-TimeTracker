@@ -9,23 +9,19 @@
 import UIKit
 
 class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+    
     var projectsPassed:[Project]!
     var categories:[ProjectCategory]!
     
     @IBOutlet weak var pickerViewOutlet: UIPickerView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,7 +35,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         categories = project.projectCategories
     }
     
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -57,16 +53,16 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         if projectsPassed == nil{
             return categories[row].categoryName
         }
-       return projectsPassed[row].projectName
+        return projectsPassed[row].projectName
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         if projectsPassed == nil{
-        let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
-        
-        let presenter = self.presentingViewController as! CreateEntryViewController
-        presenter.saveCategory(category: selectedValue)
+            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
+            
+            let presenter = self.presentingViewController as! CreateEntryViewController
+            presenter.saveCategory(category: selectedValue)
         }else{
             let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
             

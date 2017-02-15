@@ -14,26 +14,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var password: UITextField!
     @IBOutlet weak var switchBox: UISwitch!
     @IBOutlet weak var login: UIButton!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var spinner:UIActivityIndicatorView!
     var absConnectionObj = ABSConnection()
+    var activeField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard)))
         
         login.layer.cornerRadius = 10.0
         login.clipsToBounds = true
         login.layer.borderWidth = 1
         login.layer.borderColor = UIColor.black.cgColor
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "loginBackground.png")!)
+        password.layer.cornerRadius = 10.0
+        password.clipsToBounds = true
+        password.layer.borderWidth = 1
+        password.layer.borderColor = UIColor.black.cgColor
+        
+        username.layer.cornerRadius = 10.0
+        username.clipsToBounds = true
+        username.layer.borderWidth = 1
+        username.layer.borderColor = UIColor.black.cgColor
+        
         spinner = UIActivityIndicatorView()
         spinner.frame = CGRect(x:(self.view.frame.width/2)-25, y:(self.view.frame.height/2)-25, width:50, height:50)
         spinner.alpha = 0
+        spinner.transform = CGAffineTransform(scaleX: 2.0, y: 2.0);
         spinner.color = UIColor.white
         view.addSubview(spinner)
         
+        username.delegate = self
+        password.delegate = self
         testInternetConnection()
+        
+        registerForKeyboardNotifications()
+    }
+    
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask{
+        return UIInterfaceOrientationMask.portrait
+    }
+    
+    func dismissKeyboard(){
+        username.resignFirstResponder()
+        password.resignFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,20 +77,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {self.view.layoutIfNeeded()}, completion: nil)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == username{
-            self.password.becomeFirstResponder()
-        }
-        return false
     }
     
     func testInternetConnection(){
@@ -76,6 +91,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             absConnectionObj.internetConnection = true
         }else if reachability?.currentReachabilityString == "Cellular"{
             print("Success: We Got Cellular")
+            absConnectionObj.internetConnection = true
         }
     }
     
@@ -84,6 +100,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let alert = UIAlertController(title: "Invalid Credentials", message: "Please check the Credentials you entered", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        spinner.stopAnimating()
+        UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
     }
     
     @IBAction func login(_ sender: UIButton) {
@@ -129,13 +147,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func presentProjectsViewController(array:[Project]){
-        
         let storyboard = UIStoryboard(name:"Main", bundle:nil)
         let presentingVC = storyboard.instantiateViewController(withIdentifier: "entriesVC") as! EntriesViewController
         
         //set variables if needed
         presentingVC.projectsArray = array
-       
+        
         self.present(presentingVC, animated: true, completion: nil)
     }
     
@@ -151,14 +168,42 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let p = Project(dictionary: dict as! [String : Any])
                 temp.append(p)
             }
-            print(response!)
-            let arrayWithArray = [temp]
-            ABSSessionData().projectInfo = arrayWithArray
+        //    let arrayWithArray = [temp]
+            ABSSessionData().projectInfo = [temp]
             presentProjectsViewController(array: temp)
             spinner.stopAnimating()
             UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
         }else{
             print("Failed to get projects")
         }
+    }
+    
+    func keyboardWasShown(notification: NSNotification){
+        let info: NSDictionary  = notification.userInfo! as NSDictionary
+        let keyboardSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject).cgRectValue.size
+        let contentInsets:UIEdgeInsets  = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    func keyboardWillBeHidden(notification: NSNotification){
+        //Once keyboard disappears, restore original positions
+        var info = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsetsMake(0.0, 0.0, -keyboardSize!.height, 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
+    }
+    
+    func registerForKeyboardNotifications(){
+        //Adding notifies on keyboard appearing
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func deregisterFromKeyboardNotifications(){
+        //Removing notifies on keyboard appearing
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 }

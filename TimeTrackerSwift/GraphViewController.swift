@@ -10,50 +10,65 @@ import UIKit
 import Charts
 
 class GraphViewController: UIViewController {
-
+    
     @IBOutlet weak var barChartView: BarChartView!
-    var months: [String]!
+    
+    weak var axisFormatDelegate: IAxisValueFormatter?
+    weak var yAxisFormatDelegate: IAxisValueFormatter?
+    var weekTimes:[Double]! = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //barChartView.noDataText = "You need to provide data for the chart."
+        axisFormatDelegate = self
         // Do any additional setup after loading the view.
-        months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
         
-        setChart(dataPoints: months, values: unitsSold)
+        if weekTimes.count == 0{
+            barChartView.noDataText = "No entries saved."
+            barChartView.noDataFont = UIFont(name: "Gill Sans", size: 20)
+        }else{
+            setChart(values: weekTimes)
+        }
     }
     
-    func setChart(dataPoints: [String], values: [Double]) {
-        barChartView.noDataText = "You need to provide data for the chart."
+    func setChart(values: [Double]) {
+        barChartView.chartDescription?.text = ""
+        barChartView.xAxis.labelPosition = .bottom
+        barChartView.leftAxis.axisMinimum = 0.0
+        barChartView.rightAxis.axisMinimum = 0.0
+        barChartView.isUserInteractionEnabled = false
+        barChartView.drawGridBackgroundEnabled = true
+        barChartView.gridBackgroundColor = UIColor.white
+        barChartView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        barChartView.animate(xAxisDuration: 1.0, yAxisDuration: 1.0)
         
         var dataEntries: [BarChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
+        for i in 0..<weekTimes.count {
             let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
             dataEntries.append(dataEntry)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Units Sold")
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Duration")
+        chartDataSet.colors = [UIColor(red: 255/255, green: 122/255, blue: 21/255, alpha: 1)]
+        
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
         
+        let xaxis = barChartView.xAxis
+        xaxis.valueFormatter = axisFormatDelegate
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+// MARK: axisFormatDelegate
+extension GraphViewController: IAxisValueFormatter {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        var days = ["Fri", "Sat", "Sun", "Mon", "Tue", "Wed", "Thu"]
+        return days[Int(value)]
     }
-    */
-
 }

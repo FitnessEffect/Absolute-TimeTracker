@@ -19,23 +19,43 @@ class CalendarViewController:UIViewController{
     var selectedMonth = 0
     var selectedYear = 0
     var dayBoxBtn:UIButton! = nil
-    var buttonArray = [UIButton]()
-    var CreateEntryObj = CreateEntryViewController()
-    var startingMonth = 0
+    var buttonArray:[UIButton]!
+    var passedStartingMonth = 0
+    var passedStartingYear = 0
     var dateBtn = false
+    var firstDayOfMonth = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonArray = [UIButton]()
         calendarView.layer.cornerRadius = 10.0
         calendarView.clipsToBounds = true
-        var currentMonth = getCurrentMonth()
-        if startingMonth != 0{
-            currentMonth = startingMonth
-        }
+        let currentMonth = getCurrentMonth()
         let currentYear = getCurrentYear()
         selectedYear = currentYear
-        createButtonDays(month: currentMonth)
+        selectedMonth = currentMonth
         
+        if passedStartingMonth != 0{
+            selectedMonth = passedStartingMonth
+            passedStartingMonth = 0
+        }
+        if passedStartingYear != 0{
+            selectedYear = passedStartingYear
+            passedStartingYear = 0
+        }
+        createButtonDays(month: selectedMonth)
+        setToSelectedMonthAndYear()
+    }
+    
+    func setToSelectedMonthAndYear(){
+        yearLabel.text = String(selectedYear)
+        if passedStartingMonth != 0{
+            for index in 1...selectedMonth{
+                if index != 1{
+                    nextBtn()
+                }
+            }
+        }
     }
     
     func getCurrentMonth() -> Int{
@@ -47,22 +67,44 @@ class CalendarViewController:UIViewController{
     
     func getDaysInMonth(monthNum:Int, year:Int) -> Int{
         let calendar = NSCalendar.current
-        let dateComponents = DateComponents(year:year, month: monthNum)
+        let dateComponents = DateComponents(year:selectedYear, month: monthNum)
         let date = calendar.date(from: dateComponents)
         let range = calendar.range(of: .day, in: .month, for: date!)
         let numOfDays = (range?.count)! as Int
+        var tempMonth = ""
+        if String(monthNum).characters.count == 1{
+            tempMonth = "0" + String(monthNum)
+        }else{
+            tempMonth = String(monthNum)
+        }
+        let tempStr = String(selectedYear) + "-" + tempMonth + "-01"
+        firstDayOfMonth = getDayOfWeek(today: tempStr)
         return numOfDays
+    }
+    
+    func getDayOfWeek(today:String)->Int {
+        let formatter  = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let todayDate = formatter.date(from: today)!
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let myComponents = myCalendar.components(.weekday, from: todayDate)
+        let weekDay = myComponents.weekday
+        return weekDay!
     }
     
     func getCurrentYear() -> Int{
         let date = NSDate()
         let calendar = NSCalendar.current
         let year = calendar.component(.year, from: date as Date)
-        yearLabel.text = String(year)
         return year
     }
     
     @IBAction func nextBtn(_ sender: UIButton) {
+        nextBtn()
+    }
+    
+    
+    func nextBtn(){
         selectedMonth = selectedMonth + 1
         if selectedMonth == 13{
             selectedMonth = 1
@@ -87,21 +129,19 @@ class CalendarViewController:UIViewController{
         var monthStr = ""
         var btnStr = ""
         
-        print(String(selectedMonth))
         if selectedMonth < 10 {
             monthStr = "0" + String(selectedMonth)
         }else{
             monthStr = String(selectedMonth)
         }
-        print(String(btnNum))
+        
         if btnNum < 10 {
             btnStr = "0" + String(btnNum)
         }else{
             btnStr = String(btnNum)
         }
-        print(String(selectedYear))
+        
         let date = monthStr + "/" + btnStr + "/" + String(selectedYear)
-        print(date)
         if dateBtn == true{
             let presenter = self.presentingViewController as! EntriesViewController
             presenter.setNewDate(dateStr: date)
@@ -129,18 +169,33 @@ class CalendarViewController:UIViewController{
         }
         
         var xPosition = 0
-        var yPosition = 48
+        var yPosition = 58
         
-        let numOfdays = getDaysInMonth(monthNum: month, year: 2015)
-        print(numOfdays)
+        let numOfdays = getDaysInMonth(monthNum: month, year: selectedYear)
+        
+        if firstDayOfMonth == 1{
+            xPosition = 0
+        }else if firstDayOfMonth == 2{
+            xPosition = 1*43
+        }else if firstDayOfMonth == 3{
+            xPosition = 2*43
+        }else if firstDayOfMonth == 4{
+            xPosition = 3*43
+        }else if firstDayOfMonth == 5{
+            xPosition = 4*43
+        }else if firstDayOfMonth == 6{
+            xPosition = 5*43
+        }else if firstDayOfMonth == 7{
+            xPosition = 6*43
+        }
         for index in 1...numOfdays{
             dayBoxBtn = UIButton()
-            dayBoxBtn.frame = CGRect(x:xPosition, y:yPosition, width:35, height:40)
+            dayBoxBtn.frame = CGRect(x:xPosition, y:yPosition, width:42, height:42)
             buttonArray.append(dayBoxBtn)
             calendarView.addSubview(dayBoxBtn)
             dayBoxBtn.setTitle(String(index), for: .normal)
             
-            if yPosition == 89 || yPosition == 171{
+            if yPosition == 101 || yPosition == 187{
                 dayBoxBtn.backgroundColor = UIColor.gray
             }else{
                 dayBoxBtn.backgroundColor = UIColor.lightGray
@@ -148,10 +203,10 @@ class CalendarViewController:UIViewController{
             
             dayBoxBtn.tag = index
             dayBoxBtn.addTarget(self, action: #selector(CalendarViewController.pressedDay(sender:)), for: .touchUpInside)
-            xPosition = xPosition + 36
+            xPosition = xPosition + 43
             
-            if index % 7 == 0 && index > 0{
-                yPosition += 41
+            if xPosition == 301{
+                yPosition += 43
                 xPosition = 0
             }
         }

@@ -40,49 +40,48 @@ class TimeConverter{
     }
     
     static func formatTime(time:String)-> String{
-        let tempArray = time.components(separatedBy: ":")
-        var newTimeStr = ""
-        if Int(tempArray[0])! > 12 {
-            let newTime = Int(tempArray[0])!-12
-            newTimeStr = String(newTime) + ":" + tempArray[1] + " PM"
-        }else if Int(tempArray[0])! < 12{
-            if tempArray[0] == "00"{
-                newTimeStr = "12" + ":" + tempArray[1] +   " AM"
-            }else{
-                newTimeStr = tempArray[0] + ":" + tempArray[1] + " AM"
+        if time.characters.contains("m"){
+            return time
+        }else{
+            let tempArray = time.components(separatedBy: ":")
+            var newTimeStr = ""
+            if Int(tempArray[0])! > 12 {
+                let newTime = Int(tempArray[0])!-12
+                newTimeStr = String(newTime) + ":" + tempArray[1] + " pm"
+            }else if Int(tempArray[0])! < 12{
+                if tempArray[0] == "00"{
+                    newTimeStr = "12" + ":" + tempArray[1] +   " am"
+                }else{
+                    newTimeStr = tempArray[0] + ":" + tempArray[1] + " am"
+                }
+            }else if Int(tempArray[0])! == 12{
+                newTimeStr = tempArray[0] + ":" + tempArray[1] + " pm"
             }
-        }else if Int(tempArray[0])! == 12{
-            newTimeStr = tempArray[0] + ":" + tempArray[1] + " PM"
+            return newTimeStr
         }
-        return newTimeStr
     }
     
     static func changeTo24HourFormat(string:String)->String{
-        var formattedStr = ""
-        
-        let tempArray = string.components(separatedBy: " ")
-        let tempArray2 = tempArray[0].components(separatedBy: ":")
-        if tempArray.last == "PM"{
-            let formattedHour = Int(tempArray2[0])! + 12
-            formattedStr = String(formattedHour) + ":" + tempArray2[1]
-        }else{
-            if tempArray2[0].characters.count == 1{
-                formattedStr = "0" + tempArray2[0] + ":" + tempArray2[1]
-            }else{
-                formattedStr = tempArray2[0] + ":" + tempArray2[1]
-            }
-        }
-        return formattedStr
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        let date = dateFormatter.date(from: string)
+        dateFormatter.dateFormat = "HH:mm"
+        let date24 = dateFormatter.string(from: date!)
+        return date24
     }
     
     static func changeToAmPmFormat(timeStr:String) ->String{
         if timeStr.characters.count == 5{
             let tempArray = timeStr.components(separatedBy: ":")
-            if Int(tempArray[0])! > 12{
+            if Int(tempArray[0])! >= 12{
+                if Int(tempArray[0]) == 12{
+                    return tempArray[0] + ":" + tempArray[1] + " pm"
+                }else{
                 let tempHour = Int(tempArray[0])! - 12
-                return String(tempHour) + ":" + tempArray[1] + " PM"
+                return String(tempHour) + ":" + tempArray[1] + " pm"
+                }
             }else{
-                return tempArray[0] + ":" + tempArray[1] + " AM"
+                return tempArray[0] + ":" + tempArray[1] + " am"
             }
         }else{
             return timeStr
@@ -107,15 +106,21 @@ class TimeConverter{
     
     static func calculateDuration(startTime:String, endTime:String)-> Int{
         var intInterval = 0
-        let formattedStartTime = changeToAmPmFormat(timeStr: startTime)
-        let formattedEndTime = changeToAmPmFormat(timeStr: endTime)
+        let formattedStartTime:String!
+        let formattedEndTime:String!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm a"
+        
+        if startTime.characters.contains("m"){
+            formattedStartTime = startTime
+            formattedEndTime = endTime
+        }else{
+            formattedStartTime = changeToAmPmFormat(timeStr: startTime)
+            formattedEndTime = changeToAmPmFormat(timeStr: endTime)
+        }
         if formattedStartTime.isEmpty == false && formattedEndTime.isEmpty == false{
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "hh:mm a"
-            
             let startT =  dateFormatter.date(from: formattedStartTime)
             let endT = dateFormatter.date(from: formattedEndTime)
-            
             let interval = endT?.timeIntervalSince(startT!)
             intInterval = Int(interval!)
         }
@@ -130,7 +135,6 @@ class TimeConverter{
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .abbreviated
         
-        
         if hours == 0 && minutes == 0{
             tempStr = "0"
         }else if hours == 0{
@@ -141,7 +145,6 @@ class TimeConverter{
         }else{
             tempStr = String(format: "%02dh %02dmin", hours, minutes)
         }
-        
         if tempStr == "0"{
             return "0"
         }

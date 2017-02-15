@@ -37,34 +37,50 @@ class DateConverter{
         let calendar = NSCalendar.current
         let weekDay = calendar.component(.weekday, from: selectedDate as Date)
         var daysUntilFriday = 6 - weekDay
+        if daysUntilFriday == 0{
+            daysUntilFriday = 7
+        }
         if daysUntilFriday == -1{
             daysUntilFriday = 6
         }
         let friday:NSDate = selectedDate.addingTimeInterval(TimeInterval(daysUntilFriday*60*60*24))
-        
         return friday
     }
     
-    static func getPreviousSaturdayForWeek(selectedDate:NSDate) -> NSDate{
+    static func getThrusdayForWeek(selectedDate:NSDate) -> NSDate{
         let calendar = NSCalendar.current
         let weekDay = calendar.component(.weekday, from: selectedDate as Date)
-        var daysUntilPrevSaturday = 0 - weekDay
-        if daysUntilPrevSaturday == -7{
-            daysUntilPrevSaturday = 0
+        var daysUntilThrusday = 5 - weekDay
+        if daysUntilThrusday == -1{
+            daysUntilThrusday = 6
         }
-        let prevSaturday:NSDate = selectedDate.addingTimeInterval(TimeInterval(daysUntilPrevSaturday*60*60*24))
-        
-        return prevSaturday
+        if daysUntilThrusday == -2{
+            daysUntilThrusday = 5
+        }
+        let thrusday:NSDate = selectedDate.addingTimeInterval(TimeInterval(daysUntilThrusday*60*60*24))
+        return thrusday
+    }
+    
+    static func getPreviousFridayForWeek(selectedDate:NSDate) -> NSDate{
+        let calendar = NSCalendar.current
+        let weekDay = calendar.component(.weekday, from: selectedDate as Date)
+        var daysUntilPrevFriday = -1 - weekDay
+        if daysUntilPrevFriday == -7{
+            daysUntilPrevFriday = 0
+        }
+        if daysUntilPrevFriday == -8{
+            daysUntilPrevFriday = -1
+        }
+        let prevFriday:NSDate = selectedDate.addingTimeInterval(TimeInterval(daysUntilPrevFriday*60*60*24))
+        return prevFriday
     }
     
     static func getidFromResponse(selectedDate:NSDate, response:[[String:Any]]) -> Int{
         var weekID = 0
-    
+        
         let mSeconds:Double = (selectedDate.timeIntervalSince1970 + Double(NSTimeZone.local.secondsFromGMT()))*1000
         for var dictionary in response{
-            //?????
             let date = dictionary["WeekEndingDate"]
-            
             if mSeconds == Double(DateConverter.convertDateToGMT00(datePassed: date as! String)){
                 weekID = dictionary["WeekEndingID"] as! Int
             }
@@ -78,7 +94,7 @@ class DateConverter{
         
         var array1 = date.components(separatedBy: "-")
         var array2 = date.components(separatedBy: "+")
-        
+    
         var originalDate = 0 //initial date from server in miliseconds
         var miliSeconds = 0 // timezone difference in miliseconds
         var hours = 0
@@ -121,7 +137,6 @@ class DateConverter{
     
     func dateAt00(date:NSDate) -> NSDate{
         let gregorian = NSCalendar.init(calendarIdentifier: .gregorian)
-        
         let components:NSDateComponents = (gregorian?.components([.year, .month, .day, .hour, .minute , .second, .nanosecond], from: date as Date))! as NSDateComponents
         
         components.setValue(0, forComponent: .hour)
@@ -160,7 +175,6 @@ class DateConverter{
         let daysUntilFriday = 6 - weekDay
         let prevSaturday:NSDate = date.addingTimeInterval(TimeInterval(daysUntilPrevSaturday*60*60*24))
         let nextFriday:NSDate = date.addingTimeInterval(TimeInterval(daysUntilFriday*60*60*24))
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
         let stringWithFormat = dateFormatter.string(from: prevSaturday as Date) + " - " + dateFormatter.string(from: nextFriday as Date)
@@ -170,15 +184,11 @@ class DateConverter{
     static func getDateFromUnixString(str:String) -> NSDate{
         let tempArray = str.components(separatedBy: "(")
         let tempArray2 = tempArray[1].components(separatedBy: "-")
-        
-        //  let date = Date(timeIntervalSince1970: Double(tempArray2[0])!/1000)
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT") //Set timezone that you want
         dateFormatter.locale = NSLocale.current
         dateFormatter.dateFormat = "MM-dd-yyyy"
-        
         let temp = Date(timeIntervalSince1970: Double(tempArray2[0])!/1000)
-        
         return temp as NSDate
     }
     
