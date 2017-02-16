@@ -77,12 +77,24 @@ class TimeConverter{
                 if Int(tempArray[0]) == 12{
                     return tempArray[0] + ":" + tempArray[1] + " pm"
                 }else{
-                let tempHour = Int(tempArray[0])! - 12
-                return String(tempHour) + ":" + tempArray[1] + " pm"
+                    let tempHour = Int(tempArray[0])! - 12
+                    return String(tempHour) + ":" + tempArray[1] + " pm"
                 }
             }else{
                 return tempArray[0] + ":" + tempArray[1] + " am"
             }
+        }else{
+            return timeStr
+        }
+    }
+    
+    static func eraseLeading0(timeStr:String) -> String{
+        var tempStr = ""
+        if timeStr.characters.first == "0"{
+            let temp = timeStr.components(separatedBy: ":")
+            let temp2 = temp[0].components(separatedBy: "0")
+            tempStr = temp2[1] + ":" + temp[1]
+            return tempStr
         }else{
             return timeStr
         }
@@ -98,7 +110,6 @@ class TimeConverter{
             return tempArray2.last! + "min"
         }else if tempArray.last == "00"{
             return tempArray.first! + "h"
-            
         }else{
             return tempArray.first! + "h" + " " + tempArray.last! + "min"
         }

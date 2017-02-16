@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "82F895529039AC60F9BE78847AFAB2DD11C8C272",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "82F895529039AC60F9BE78847AFAB2DD11C8C272" : 9223372036854775807,
+    "9025163822AAEA7A2D8AC9210D0874A56F62B462" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0F6C53E3-FEA1-4514-A4E7-60BE4E621E56",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "82F895529039AC60F9BE78847AFAB2DD11C8C272" : "TimeTrackerSwift\/",
+    "9025163822AAEA7A2D8AC9210D0874A56F62B462" : "..\/..\/Charts"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TimeTrackerSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TimeTrackerSwift.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/FitnessEffect\/TimeTrackerSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "82F895529039AC60F9BE78847AFAB2DD11C8C272"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/danielgindi\/Charts",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9025163822AAEA7A2D8AC9210D0874A56F62B462"
+    }
+  ]
+}

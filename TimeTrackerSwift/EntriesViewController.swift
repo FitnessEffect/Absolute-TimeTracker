@@ -204,12 +204,13 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         if tempArr.count != 0{
             let entry:Entry = tempArr[indexPath.row]
             cell.projectNameOutlet.text =  entry.projectName as String
+            
             let duration = TimeConverter.calculateDuration(startTime: entry.startHour, endTime: entry.endHour)
             let time = TimeConverter.formatDurationFromSeconds(durationInSeconds: duration)
             if entry.startHour.characters.contains("m"){
                 cell.entryDurationOutlet.text = time + " (" + entry.startHour + " → " + entry.endHour + ")"
             }else{
-                cell.entryDurationOutlet.text = time + " (" + TimeConverter.formatTime(time: entry.startHour as String) + " → " + TimeConverter.formatTime(time: entry.endHour as String) + ")"
+                cell.entryDurationOutlet.text = time + " (" + TimeConverter.eraseLeading0(timeStr:TimeConverter.formatTime(time: entry.startHour as String)) + " → " + TimeConverter.eraseLeading0(timeStr:TimeConverter.formatTime(time: entry.endHour as String)) + ")"
             }
             cell.numberOutlet.text = String(indexPath.row + 1)
         }
@@ -255,7 +256,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         ABSConnection.shared().fetchWeekEndingsCompletionBlock{ (response) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if ((response) != nil) {
-                
                 let id = DateConverter.getidFromResponse(selectedDate: DateConverter.getFridayForWeek(selectedDate: tempDate), response: response as! [[String : Any]]) as NSNumber!
                 self.selectedWeekID = id!
                 print(self.selectedWeekID)
@@ -465,7 +465,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         if self.isViewLoaded && (self.view.window != nil){
             if UIDevice.current.orientation.isLandscape == true {
                 if self.presentedViewController is CalendarViewController{
-                    dismiss(animated: true, completion: {self.presentPopoverGraph()})
+                    dismiss(animated: true, completion: nil)
                 }
                 presentPopoverGraph()
             }

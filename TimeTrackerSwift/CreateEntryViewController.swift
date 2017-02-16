@@ -235,8 +235,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             }
         }else{
             
-            
-            
             //check for empty string
             activeEntry.descript = descriptionTextView.text
             descriptionTextView.resignFirstResponder()
@@ -281,9 +279,9 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             //JSON IN SWIFT
             var entryJSON:[String:String] = [:]
             if titleVC == "Edit Entry"{
-                entryJSON = ["EntryId":String(entryID),"Description":activeEntry.descript as String, "Duration":String(activeEntry.duration), "CategoryID":String(describing: activeEntry.categoryID), "EndHour":TimeConverter.changeTo24HourFormat(string:activeEntry.endHour) as String, "EntryDate":String(describing: wsDate), "IssueID":"0", "ModuleID":"0", "ProjectID":String(describing: activeEntry.projectID), "StartHour":TimeConverter.changeTo24HourFormat(string:activeEntry.startHour), "UserID":String(describing: ABSConnection().returnId()!)]
+                entryJSON = ["EntryId":String(entryID),"Description":activeEntry.descript as String, "Duration":String(activeEntry.duration), "CategoryID":String(describing: activeEntry.categoryID), "EndHour":activeEntry.endHour, "EntryDate":String(describing: wsDate), "IssueID":"0", "ModuleID":"0", "ProjectID":String(describing: activeEntry.projectID), "StartHour":activeEntry.startHour, "UserID":String(describing: ABSConnection().returnId()!)]
             }else{
-                entryJSON = ["Description":activeEntry.descript as String, "Duration":String(activeEntry.duration), "CategoryID":String(describing: activeEntry.categoryID), "EndHour":TimeConverter.changeTo24HourFormat(string:activeEntry.endHour) as String, "EntryDate":String(describing: wsDate), "IssueID":"0", "ModuleID":"0", "ProjectID":String(describing: activeEntry.projectID), "StartHour":TimeConverter.changeTo24HourFormat(string:activeEntry.startHour), "UserID":String(describing: ABSConnection().returnId()!)]
+                entryJSON = ["Description":activeEntry.descript as String, "Duration":String(activeEntry.duration), "CategoryID":String(describing: activeEntry.categoryID), "EndHour":activeEntry.endHour, "EntryDate":String(describing: wsDate), "IssueID":"0", "ModuleID":"0", "ProjectID":String(describing: activeEntry.projectID), "StartHour":activeEntry.startHour, "UserID":String(describing: ABSConnection().returnId()!)]
             }
             
             if testInternetConnection() == true{
