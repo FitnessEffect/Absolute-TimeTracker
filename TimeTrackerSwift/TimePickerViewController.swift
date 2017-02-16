@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class TimePickerViewController: UIViewController, UIPickerViewDelegate{
+class TimePickerViewController: UIViewController, UIPickerViewDelegate, UIGestureRecognizerDelegate{
     var strTimeSaved = ""
     var endTimeSaved = ""
     @IBOutlet weak var timePickerViewOutlet: UIDatePicker!
@@ -22,6 +22,9 @@ class TimePickerViewController: UIViewController, UIPickerViewDelegate{
         if endTimeSaved != ""{
             setTimeInPicker(timeStr: endTimeSaved)
         }
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PickerViewController.pickerTapped))
+        self.timePickerViewOutlet.addGestureRecognizer(tap)
+        tap.delegate = self
     }
     
     func setTimeInPicker(timeStr:String){
@@ -36,6 +39,10 @@ class TimePickerViewController: UIViewController, UIPickerViewDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func pickerTapped(){
+        self.dismiss(animated: true, completion: nil)
+    }
 
     @IBAction func timePickerView(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
@@ -43,5 +50,9 @@ class TimePickerViewController: UIViewController, UIPickerViewDelegate{
         let selectedTime = formatter.string(from: timePickerViewOutlet.date).lowercased()
         let presenter = self.presentingViewController as! CreateEntryViewController
         presenter.saveTime(time: selectedTime)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

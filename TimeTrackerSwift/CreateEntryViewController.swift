@@ -117,6 +117,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             dateTextField.text = DateConverter.getCurrentDate()
         }
         scrollView.setParent(sender: self)
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -336,7 +337,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             popController.popoverPresentationController?.delegate = self
             popController.popoverPresentationController?.sourceView = self.view
             popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
-            popController.preferredContentSize = CGSize(width: 250, height: 160)
+            popController.preferredContentSize = CGSize(width: 360, height: 160)
             
             // present the popover
             self.present(popController, animated: true, completion: nil)
@@ -362,13 +363,11 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     }
     
     func selectProject(_ sender:UITextField){
-        
         let xPosition = projectTextField.frame.minX + (projectTextField.frame.width/2)
         let yPosition = sender.frame.maxY
         // get a reference to the view controller for the popover
         
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pickerView") as! PickerViewController
-        
         popController.setProjects(array: projectsArray)
         // set the presentation style
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -378,7 +377,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = self.view
         popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
-        popController.preferredContentSize = CGSize(width: 250, height: 160)
+        popController.preferredContentSize = CGSize(width: 360, height: 160)
         
         // present the popover
         self.present(popController, animated: true, completion: nil)
@@ -487,7 +486,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     }
     
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        print("done")
         durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
         checkForNegativeDuration()
     }

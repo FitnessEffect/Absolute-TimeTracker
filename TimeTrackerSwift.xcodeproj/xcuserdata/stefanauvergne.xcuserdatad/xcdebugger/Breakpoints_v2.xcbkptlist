@@ -9,22 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TimeTrackerSwift/CreateEntryViewController.swift"
-            timestampString = "508690797.211004"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "save(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "TimeTrackerSwift/TimeConverter.swift"
             timestampString = "508432855.162331"
             startingColumnNumber = "9223372036854775807"
@@ -42,27 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TimeTrackerSwift/CreateEntryViewController.swift"
-            timestampString = "508692307.769755"
+            timestampString = "508870953.059666"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "save(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TimeTrackerSwift/CreateEntryViewController.swift"
-            timestampString = "508692545.278167"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "540"
-            endingLineNumber = "540"
+            startingLineNumber = "538"
+            endingLineNumber = "538"
             landmarkName = "keyboardWillBeHidden(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -105,29 +73,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TimeTrackerSwift/CreateEntryViewController.swift"
-            timestampString = "508692545.278167"
+            filePath = "TimeTrackerSwift/PickerViewController.swift"
+            timestampString = "508946039.474486"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "489"
-            endingLineNumber = "489"
-            landmarkName = "popoverPresentationControllerDidDismissPopover(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TimeTrackerSwift/TimePickerViewController.swift"
-            timestampString = "508690955.906834"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "timePickerView(_:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "pickerTapped()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

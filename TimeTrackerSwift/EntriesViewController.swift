@@ -251,10 +251,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func getSelectedWeekID(dateStr:String){
-        // spinner = UIActivityIndicatorView()
-        // spinner.startAnimating()
-        // UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
-        
         let tempDate = DateConverter.stringToDate(dateStr: dateStr) as NSDate
         ABSConnection.shared().fetchWeekEndingsCompletionBlock{ (response) in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -348,7 +344,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         let yPosition = date.frame.maxY
         
         // get a reference to the view controller for the popover
-        
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "calendar") as! CalendarViewController
         
         popController.dateBtn = true
@@ -475,7 +470,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
                 presentPopoverGraph()
             }
         }else{
-            //NOT PROPERLY HANDLING LANDSCAPE
             if UIDevice.current.orientation.isLandscape == true {
                 return
             }else{
@@ -499,7 +493,6 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         popController.weekTimes = times
         
         // set up the popover presentation controller
-        //popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = self.view
         popController.popoverPresentationController?.sourceRect = CGRect(x: view.frame.origin.x, y: view.frame.origin.y, width: 0, height: 0)

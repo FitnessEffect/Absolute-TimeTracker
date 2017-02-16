@@ -168,7 +168,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let p = Project(dictionary: dict as! [String : Any])
                 temp.append(p)
             }
-        //    let arrayWithArray = [temp]
             ABSSessionData().projectInfo = [temp]
             presentProjectsViewController(array: temp)
             spinner.stopAnimating()

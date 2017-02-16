@@ -8,14 +8,18 @@
 
 import UIKit
 
-class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UIGestureRecognizerDelegate{
     
     var projectsPassed:[Project]!
     var categories:[ProjectCategory]!
     
     @IBOutlet weak var pickerViewOutlet: UIPickerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PickerViewController.pickerTapped))
+        self.pickerViewOutlet.addGestureRecognizer(tap)
+        tap.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +29,25 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func pickerTapped(){
+        if projectsPassed == nil{
+            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
+            
+            let presenter = self.presentingViewController as! CreateEntryViewController
+            presenter.saveCategory(category: selectedValue)
+        }else{
+            let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
+            
+            let presenter = self.presentingViewController as! CreateEntryViewController
+            presenter.saveProject(project: selectedValue)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     func setProjects(array:[Project]){
@@ -56,18 +79,32 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return projectsPassed[row].projectName
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-    {
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+//    {
+//        if projectsPassed == nil{
+//            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
+//            
+//            let presenter = self.presentingViewController as! CreateEntryViewController
+//            presenter.saveCategory(category: selectedValue)
+//        }else{
+//            let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
+//            
+//            let presenter = self.presentingViewController as! CreateEntryViewController
+//            presenter.saveProject(project: selectedValue)
+//        }
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        var titleData:String!
         if projectsPassed == nil{
-            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
-            
-            let presenter = self.presentingViewController as! CreateEntryViewController
-            presenter.saveCategory(category: selectedValue)
+            titleData = categories[row].categoryName
         }else{
-            let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
-            
-            let presenter = self.presentingViewController as! CreateEntryViewController
-            presenter.saveProject(project: selectedValue)
+            titleData = projectsPassed[row].projectName
         }
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Gill Sans", size: 19.0)!,NSForegroundColorAttributeName:UIColor.black])
+        pickerLabel.attributedText = myTitle
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
     }
 }

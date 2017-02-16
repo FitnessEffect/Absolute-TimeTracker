@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52122BCF1E5390CE00329133 /* StoryboardSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52122BCE1E5390CE00329133 /* StoryboardSegue.swift */; };
 		521E4ADF1E1DFE6D009025E5 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */; };
 		52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */; };
 		52236ACB1E31367C00F1D3AD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52236AC61E31366600F1D3AD /* Charts.framework */; };
@@ -82,7 +81,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		52122BCE1E5390CE00329133 /* StoryboardSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegue.swift; sourceTree = "<group>"; };
 		521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		52236ABF1E31366600F1D3AD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
@@ -197,7 +195,6 @@
 				52D252A11DFF846A000A0289 /* CalendarViewController.swift */,
 				52D252771DFEEEF2000A0289 /* LoginViewController.swift */,
 				52F8B8091E13397E001E86B1 /* EntriesViewController.swift */,
-				52122BCE1E5390CE00329133 /* StoryboardSegue.swift */,
 				52F8B80D1E134D93001E86B1 /* PickerViewController.swift */,
 				52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */,
 				528A9EC01E36D9C90040FA71 /* ScrollView.swift */,
@@ -341,7 +338,6 @@
 				528A9EC11E36D9C90040FA71 /* ScrollView.swift in Sources */,
 				52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */,
 				52683FFD1E01A2B00047B283 /* TimePickerViewController.swift in Sources */,
-				52122BCF1E5390CE00329133 /* StoryboardSegue.swift in Sources */,
 				52D252A21DFF846A000A0289 /* CalendarViewController.swift in Sources */,
 				52D2529F1DFF81AC000A0289 /* ABSConnection.m in Sources */,
 				52F8B80A1E13397E001E86B1 /* EntriesViewController.swift in Sources */,

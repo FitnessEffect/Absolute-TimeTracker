@@ -103,7 +103,6 @@ class CalendarViewController:UIViewController{
         nextBtn()
     }
     
-    
     func nextBtn(){
         selectedMonth = selectedMonth + 1
         if selectedMonth == 13{
@@ -147,12 +146,10 @@ class CalendarViewController:UIViewController{
             presenter.setNewDate(dateStr: date)
             dateBtn = false
         }else{
-            
             let presenter = self.presentingViewController as! CreateEntryViewController
             presenter.saveDate(date: date)
         }
         self.dismiss(animated: true, completion: nil)
-        
         return date
     }
     
@@ -172,7 +169,6 @@ class CalendarViewController:UIViewController{
         var yPosition = 58
         
         let numOfdays = getDaysInMonth(monthNum: month, year: selectedYear)
-        
         if firstDayOfMonth == 1{
             xPosition = 0
         }else if firstDayOfMonth == 2{
