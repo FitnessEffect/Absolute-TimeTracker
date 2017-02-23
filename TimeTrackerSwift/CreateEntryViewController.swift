@@ -327,6 +327,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pickerView") as! PickerViewController
             
             popController.setCategoriesForProject(project: activeProject)
+            
             // set the presentation style
             popController.modalPresentationStyle = UIModalPresentationStyle.popover
             
@@ -335,7 +336,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             popController.popoverPresentationController?.delegate = self
             popController.popoverPresentationController?.sourceView = self.view
             popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
-            popController.preferredContentSize = CGSize(width: 360, height: 160)
+            popController.preferredContentSize = CGSize(width: 355, height: 210)
             
             // present the popover
             self.present(popController, animated: true, completion: nil)
@@ -345,11 +346,13 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
                 activeCategory = activeProject.projectCategories[0]
                 saveCategory(category: activeProject.projectCategories[0])
             }
+            popController.currentCategorySelection = categoryTextField.text
+           
         }
     }
     
     func saveCategory(category:ProjectCategory){
-        categoryTextField.text = category.abbreviation
+        categoryTextField.text = category.categoryName
         //set active category
         activeCategory = category
     }
@@ -363,10 +366,11 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     func selectProject(_ sender:UITextField){
         let xPosition = projectTextField.frame.minX + (projectTextField.frame.width/2)
         let yPosition = sender.frame.maxY
-        // get a reference to the view controller for the popover
         
+        // get a reference to the view controller for the popover
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "pickerView") as! PickerViewController
         popController.setProjects(array: projectsArray)
+        
         // set the presentation style
         popController.modalPresentationStyle = UIModalPresentationStyle.popover
         
@@ -375,7 +379,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = self.view
         popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
-        popController.preferredContentSize = CGSize(width: 360, height: 160)
+        popController.preferredContentSize = CGSize(width: 355, height: 210)
         
         // present the popover
         self.present(popController, animated: true, completion: nil)
@@ -385,6 +389,8 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             activeProject = projectsArray[0]
             saveProject(project: projectsArray[0])
         }
+        popController.currentProjectSelection = projectTextField.text
+        
     }
     
     func saveTime(time:String){
@@ -396,6 +402,8 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             prefs.set(selectedTime, forKey: latestEnteredEndTime)
             endTimeTextField.text = selectedTime
         }
+         durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
+        checkForNegativeDuration()
     }
     
     func saveEndTime(time:String){
@@ -439,7 +447,13 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let xPosition = startTimeTextField.frame.minX + (startTimeTextField.frame.width/2)
             
             let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "time") as! TimePickerViewController
-            
+        
+        if sender.tag == 1{
+            popController.currentTimeSaved = startTimeTextField.text
+        }
+        if sender.tag == 2{
+             popController.currentTimeSaved = endTimeTextField.text
+        }
             // set the presentation style
             popController.modalPresentationStyle = UIModalPresentationStyle.popover
             
@@ -447,7 +461,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
             popController.popoverPresentationController?.delegate = self
             popController.popoverPresentationController?.sourceView = self.view
-            popController.preferredContentSize = CGSize(width: 250, height: 160)
+            popController.preferredContentSize = CGSize(width: 250, height: 205)
             popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: sender.frame.maxY, width: 0, height: 0)
             
             if sender.tag == 1{

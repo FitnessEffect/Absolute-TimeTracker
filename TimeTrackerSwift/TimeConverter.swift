@@ -14,7 +14,6 @@ class TimeConverter{
         var tempMinuteStr = ""
         let date = NSDate()
         let formatter = DateFormatter()
-        
         let calendar = NSCalendar.current
         var hour = calendar.component(.hour, from: date as Date)
         var symbol = ""

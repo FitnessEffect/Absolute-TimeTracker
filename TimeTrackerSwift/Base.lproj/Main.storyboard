@@ -145,20 +145,29 @@
                                 <date key="date" timeIntervalSinceReferenceDate="503423703.76162601">
                                     <!--2016-12-14 15:55:03 +0000-->
                                 </date>
-                                <connections>
-                                    <action selector="timePickerView:" destination="rxx-H3-Mz1" eventType="valueChanged" id="g6N-7i-c3C"/>
-                                </connections>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfa-32-QoX">
+                                <rect key="frame" x="0.0" y="160" width="250" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
+                                <state key="normal" title="Select">
+                                    <color key="titleColor" red="0.96078431369999995" green="0.23921568630000001" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectTime:" destination="rxx-H3-Mz1" eventType="touchUpInside" id="oj8-YQ-vOP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="selectBtn" destination="qfa-32-QoX" id="ArY-SB-aYm"/>
                         <outlet property="timePickerViewOutlet" destination="Qy9-as-wqC" id="8HO-o4-B7J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3A-mg-7JV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3591" y="-824"/>
+            <point key="canvasLocation" x="3589.5999999999999" y="-824.43778110944538"/>
         </scene>
         <!--Entry Details-->
         <scene sceneID="iDf-7x-gxl">
@@ -208,7 +217,7 @@
                                             <constraint firstAttribute="height" constant="44" id="cPS-WN-4gv"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="19"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4jH-Y1-q7V">
@@ -218,7 +227,7 @@
                                             <constraint firstAttribute="height" constant="44" id="tJ9-HG-0dt"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="20"/>
+                                        <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="19"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IbY-FT-fhb">
@@ -276,7 +285,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HPh-Hm-RMz">
-                                        <rect key="frame" x="5" y="456" width="365" height="140"/>
+                                        <rect key="frame" x="5" y="458" width="365" height="140"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="140" id="6de-Qf-9iM"/>
@@ -307,7 +316,7 @@
                                         </items>
                                     </navigationBar>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgt-8t-SL3">
-                                        <rect key="frame" x="4" y="424" width="104" height="30"/>
+                                        <rect key="frame" x="4" y="426" width="104" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="104" id="Cie-ZW-BrG"/>
                                             <constraint firstAttribute="height" constant="30" id="b7J-B8-Kqw"/>
@@ -342,7 +351,7 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAU-FF-gnW">
-                                        <rect key="frame" x="114" y="607" width="146" height="44"/>
+                                        <rect key="frame" x="114" y="609" width="146" height="44"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="SEF-Mr-P3N"/>
@@ -389,7 +398,7 @@
                                     <constraint firstItem="WpQ-0p-Q2Z" firstAttribute="trailing" secondItem="tDu-6P-zwm" secondAttribute="trailing" id="Sx2-Mc-huZ"/>
                                     <constraint firstItem="s48-Jw-ojt" firstAttribute="leading" secondItem="Tra-te-HGo" secondAttribute="trailing" constant="10" id="UrV-3A-fej"/>
                                     <constraint firstItem="WpQ-0p-Q2Z" firstAttribute="top" secondItem="sk0-RX-nFd" secondAttribute="top" constant="87" id="VCW-ro-dtS"/>
-                                    <constraint firstAttribute="bottom" secondItem="tAU-FF-gnW" secondAttribute="bottom" constant="16" id="VFv-aL-qdb"/>
+                                    <constraint firstAttribute="bottom" secondItem="tAU-FF-gnW" secondAttribute="bottom" constant="14" id="VFv-aL-qdb"/>
                                     <constraint firstItem="oVf-eF-QE3" firstAttribute="top" secondItem="sk0-RX-nFd" secondAttribute="top" constant="77" id="VIk-tR-Svd"/>
                                     <constraint firstAttribute="trailing" secondItem="OQJ-SZ-ci0" secondAttribute="trailing" id="Vdn-YQ-EUE"/>
                                     <constraint firstItem="qGP-18-esk" firstAttribute="height" secondItem="IbY-FT-fhb" secondAttribute="height" id="XGC-hT-Eie"/>
@@ -403,7 +412,7 @@
                                     <constraint firstItem="qGP-18-esk" firstAttribute="width" secondItem="IbY-FT-fhb" secondAttribute="width" id="fjQ-fI-Isr"/>
                                     <constraint firstItem="OQJ-SZ-ci0" firstAttribute="leading" secondItem="sk0-RX-nFd" secondAttribute="leading" id="g0p-E6-eW1"/>
                                     <constraint firstItem="qGP-18-esk" firstAttribute="leading" secondItem="tDu-6P-zwm" secondAttribute="trailing" constant="5" id="g5U-uU-9c2"/>
-                                    <constraint firstItem="tgt-8t-SL3" firstAttribute="top" secondItem="Rcd-Td-N7d" secondAttribute="bottom" constant="5" id="hye-It-2qk"/>
+                                    <constraint firstItem="tgt-8t-SL3" firstAttribute="top" secondItem="Rcd-Td-N7d" secondAttribute="bottom" constant="7" id="hye-It-2qk"/>
                                     <constraint firstItem="4jH-Y1-q7V" firstAttribute="leading" secondItem="oVf-eF-QE3" secondAttribute="leading" id="iGB-aF-MQV"/>
                                     <constraint firstItem="tAU-FF-gnW" firstAttribute="top" secondItem="HPh-Hm-RMz" secondAttribute="bottom" constant="11" id="k9o-lQ-IUc"/>
                                     <constraint firstItem="OQJ-SZ-ci0" firstAttribute="top" secondItem="sk0-RX-nFd" secondAttribute="top" constant="21" id="ljA-sm-leV"/>
@@ -469,16 +478,28 @@
                                     <outlet property="delegate" destination="lHq-r5-80V" id="oHK-eU-Ryo"/>
                                 </connections>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlt-5K-dpw">
+                                <rect key="frame" x="0.0" y="165" width="355" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="24"/>
+                                <state key="normal" title="Select">
+                                    <color key="titleColor" red="0.96078431369999995" green="0.23921568630000001" blue="0.023529411760000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="selectElement:" destination="lHq-r5-80V" eventType="touchUpInside" id="DJo-1L-g88"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="pickerViewOutlet" destination="ijv-ex-qQ4" id="D7a-QT-OMF"/>
+                        <outlet property="selectBtn" destination="qlt-5K-dpw" id="Tv8-yC-8wH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gjY-g3-2Zl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2842" y="-72"/>
+            <point key="canvasLocation" x="2840.8000000000002" y="-72.413793103448285"/>
         </scene>
         <!--Graph View Controller-->
         <scene sceneID="h5Z-0U-loI">

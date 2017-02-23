@@ -347,6 +347,14 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
         let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "calendar") as! CalendarViewController
         
         popController.dateBtn = true
+        if date.titleLabel?.text?.isEmpty == false{
+            let dateStr = date.titleLabel?.text
+            let tempArray = dateStr?.components(separatedBy: " ")
+            let tempArray2 = tempArray?[2].components(separatedBy: "/")
+            
+            popController.passedStartingMonth = Int((tempArray2?[0])!)!
+            popController.passedStartingYear = Int((tempArray2?[2])!)!
+        }
         
         // set the presentation style
         popController.modalPresentationStyle = UIModalPresentationStyle.popover

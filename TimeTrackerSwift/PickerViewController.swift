@@ -12,18 +12,23 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     var projectsPassed:[Project]!
     var categories:[ProjectCategory]!
+    var currentProjectSelection:String!
+    var currentCategorySelection:String!
     
+    @IBOutlet weak var selectBtn: UIButton!
     @IBOutlet weak var pickerViewOutlet: UIPickerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(PickerViewController.pickerTapped))
-        self.pickerViewOutlet.addGestureRecognizer(tap)
-        tap.delegate = self
+        selectBtn.layer.cornerRadius = 13.0
+        selectBtn.clipsToBounds = true
+        selectBtn.layer.borderWidth = 1
+        selectBtn.layer.borderColor = UIColor.black.cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        setPickerValue()
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,23 +36,25 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Dispose of any resources that can be recreated.
     }
     
-    func pickerTapped(){
-        if projectsPassed == nil{
-            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
-            
-            let presenter = self.presentingViewController as! CreateEntryViewController
-            presenter.saveCategory(category: selectedValue)
+    func setPickerValue(){
+        var row = 0
+        if currentProjectSelection != nil && currentProjectSelection != "" {
+            for index in 0...projectsPassed.count-1{
+                if projectsPassed[index].projectName == currentProjectSelection{
+                    row = index
+                }
+            }
         }else{
-            let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
-            
-            let presenter = self.presentingViewController as! CreateEntryViewController
-            presenter.saveProject(project: selectedValue)
+            if currentCategorySelection != nil && currentCategorySelection != ""{
+                for index in 0...categories.count-1{
+                    if categories[index].categoryName == currentCategorySelection{
+                        row = index
+                    }
+                }
+                
+            }
         }
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        pickerViewOutlet.selectRow(row, inComponent: 0, animated: true)
     }
     
     func setProjects(array:[Project]){
@@ -79,20 +86,20 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         return projectsPassed[row].projectName
     }
     
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
-//    {
-//        if projectsPassed == nil{
-//            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
-//            
-//            let presenter = self.presentingViewController as! CreateEntryViewController
-//            presenter.saveCategory(category: selectedValue)
-//        }else{
-//            let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
-//            
-//            let presenter = self.presentingViewController as! CreateEntryViewController
-//            presenter.saveProject(project: selectedValue)
-//        }
-//    }
+    @IBAction func selectElement(_ sender: UIButton) {
+        if projectsPassed == nil{
+            let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
+            
+            let presenter = self.presentingViewController as! CreateEntryViewController
+            presenter.saveCategory(category: selectedValue)
+        }else{
+            let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
+            
+            let presenter = self.presentingViewController as! CreateEntryViewController
+            presenter.saveProject(project: selectedValue)
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
@@ -105,6 +112,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Gill Sans", size: 19.0)!,NSForegroundColorAttributeName:UIColor.black])
         pickerLabel.attributedText = myTitle
         pickerLabel.textAlignment = NSTextAlignment.center
+        
         return pickerLabel
     }
 }
