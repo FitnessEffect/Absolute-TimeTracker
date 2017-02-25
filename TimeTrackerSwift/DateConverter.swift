@@ -102,6 +102,7 @@ class DateConverter{
         if array1.count == 2{
             let dateString = array1[0]
             let index = dateString.index(dateString.startIndex, offsetBy: 5)
+            //Iphone 5 bug
             originalDate = Int(dateString.substring(from: index))!
             let gmt = array1[1]
             var convertedDate = gmt.replacingOccurrences(of: ")", with: "")

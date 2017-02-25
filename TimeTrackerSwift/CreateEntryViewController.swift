@@ -218,7 +218,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             updateActiveEntry()
             
             //Input Validation
-            if (self.activeEntry.descript == nil || activeEntry.descript == "" || activeEntry.startHour == nil || activeEntry.endHour == nil || activeEntry.projectID == nil || activeEntry.categoryID == nil || self.activeEntry.entryDate == nil || self.durationResult.text == "Error" || activeProject.projectName == "" || activeEntry.projectID == nil || activeEntry.categoryID == nil){
+            if (activeEntry.descript == "" || self.durationResult.text == "Error" || activeProject.projectName == ""){
                 flag = false
             }
         }
