@@ -117,7 +117,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             dateTextField.text = DateConverter.getCurrentDate()
         }
         scrollView.setParent(sender: self)
-      
     }
     
     override func didReceiveMemoryWarning() {
@@ -234,7 +233,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
                 self.present(alert, animated: true, completion: nil)
             }
         }else{
-            
             //check for empty string
             activeEntry.descript = descriptionTextView.text
             descriptionTextView.resignFirstResponder()
@@ -243,10 +241,8 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let dateFormatterFirst = DateFormatter()
             dateFormatterFirst.dateFormat = "hh:mm a"
             let entryEndHour:Date =  dateFormatterFirst.date(from: activeEntry.endHour as String)!
-            
             let entryStartHour:Date = dateFormatterFirst.date(from: activeEntry.startHour as String)!
             let timeInterval = Int(entryEndHour.timeIntervalSince(entryStartHour))
-            
             self.activeEntry.duration = Float(timeInterval)/Float(3600)
             
             //Convert Date to 24h format
@@ -347,7 +343,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
                 saveCategory(category: activeProject.projectCategories[0])
             }
             popController.currentCategorySelection = categoryTextField.text
-           
         }
     }
     
@@ -390,7 +385,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             saveProject(project: projectsArray[0])
         }
         popController.currentProjectSelection = projectTextField.text
-        
     }
     
     func saveTime(time:String){

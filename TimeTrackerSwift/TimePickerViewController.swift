@@ -14,7 +14,6 @@ class TimePickerViewController: UIViewController, UIPickerViewDelegate, UIGestur
     var endTimeSaved = ""
     var currentTimeSaved:String!
 
-    
     @IBOutlet weak var selectBtn: UIButton!
     @IBOutlet weak var timePickerViewOutlet: UIDatePicker!
     

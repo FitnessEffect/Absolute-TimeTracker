@@ -20,7 +20,6 @@ class GraphViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         axisFormatDelegate = self
-        // Do any additional setup after loading the view.
         
         if weekTimes.count == 0{
             barChartView.noDataText = "No entries saved."
