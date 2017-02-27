@@ -21,6 +21,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     @IBOutlet weak var save: UIButton!
     @IBOutlet weak var endTimeBtn: UIButton!
     @IBOutlet weak var scrollView: ScrollView!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var textEntries = [Entry]()
     var entry:Entry!
@@ -54,11 +55,9 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             navigationTitle.title = titleVC
         }
         if let setStartT = prefs.object(forKey: latestEnteredStartTime) as? String{
-            print(setStartT)
             startTimeTextField.text = setStartT
         }
         if let setEndT = prefs.object(forKey: latestEnteredEndTime) as? String{
-            print(setEndT)
             endTimeTextField.text = setEndT
         }
         if startTimeTextField.text != "" && endTimeTextField.text != ""{
@@ -172,6 +171,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         endTimeTextField.text = TimeConverter.formatTime(time: entry.endHour as String)
         durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds: TimeConverter.calculateDuration(startTime: entry.startHour, endTime: entry.endHour))
         descriptionTextView.text = entry.descript as String
+        descriptionLabelActivation()
     }
     
     func updateActiveEntry(){
@@ -192,6 +192,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         dictionary["EntryDate"] = dateTextField.text
         
         activeEntry = Entry(dictionary: dictionary)
+        
     }
     
     func testInternetConnection() -> Bool{
@@ -337,11 +338,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             // present the popover
             self.present(popController, animated: true, completion: nil)
             
-            if categoryTextField.text == ""{
-                categoryTextField.text = activeProject.projectCategories[0].categoryName
-                activeCategory = activeProject.projectCategories[0]
-                saveCategory(category: activeProject.projectCategories[0])
-            }
             popController.currentCategorySelection = categoryTextField.text
         }
     }
@@ -379,11 +375,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         // present the popover
         self.present(popController, animated: true, completion: nil)
         
-        if projectTextField.text == ""{
-            projectTextField.text = projectsArray[0].projectName
-            activeProject = projectsArray[0]
-            saveProject(project: projectsArray[0])
-        }
         popController.currentProjectSelection = projectTextField.text
     }
     
@@ -396,7 +387,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             prefs.set(selectedTime, forKey: latestEnteredEndTime)
             endTimeTextField.text = selectedTime
         }
-         durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
+        durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
         checkForNegativeDuration()
     }
     
@@ -435,60 +426,48 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     }
     
     func selectTime(_ sender: UITextField){
-            startTimeSelected = false
-            endTimeSelected = false
-            
-            let xPosition = startTimeTextField.frame.minX + (startTimeTextField.frame.width/2)
-            
-            let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "time") as! TimePickerViewController
+        startTimeSelected = false
+        endTimeSelected = false
+        
+        let xPosition = startTimeTextField.frame.minX + (startTimeTextField.frame.width/2)
+        
+        let popController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "time") as! TimePickerViewController
         
         if sender.tag == 1{
             popController.currentTimeSaved = startTimeTextField.text
         }
         if sender.tag == 2{
-             popController.currentTimeSaved = endTimeTextField.text
+            popController.currentTimeSaved = endTimeTextField.text
         }
-            // set the presentation style
-            popController.modalPresentationStyle = UIModalPresentationStyle.popover
-            
-            // set up the popover presentation controller
-            popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
-            popController.popoverPresentationController?.delegate = self
-            popController.popoverPresentationController?.sourceView = self.view
-            popController.preferredContentSize = CGSize(width: 250, height: 205)
-            popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: sender.frame.maxY, width: 0, height: 0)
-            
-            if sender.tag == 1{
-                if (startTimeTextField.text?.isEmpty == false){
-                    popController.strTimeSaved = (startTimeTextField.text?.lowercased())!
-                }
+        // set the presentation style
+        popController.modalPresentationStyle = UIModalPresentationStyle.popover
+        
+        // set up the popover presentation controller
+        popController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.up
+        popController.popoverPresentationController?.delegate = self
+        popController.popoverPresentationController?.sourceView = self.view
+        popController.preferredContentSize = CGSize(width: 250, height: 205)
+        popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: sender.frame.maxY, width: 0, height: 0)
+        
+        if sender.tag == 1{
+            if (startTimeTextField.text?.isEmpty == false){
+                popController.strTimeSaved = (startTimeTextField.text?.lowercased())!
             }
-            if sender.tag == 2{
-                if (endTimeTextField.text?.isEmpty == false){
-                    popController.endTimeSaved = (endTimeTextField.text?.lowercased())!
-                }
+        }
+        if sender.tag == 2{
+            if (endTimeTextField.text?.isEmpty == false){
+                popController.endTimeSaved = (endTimeTextField.text?.lowercased())!
             }
-            // present the popover
-            self.present(popController, animated: true, completion: nil)
-            
-            if sender.tag == 1{
-                if (startTimeTextField.text?.isEmpty)!{
-                    currentTime = TimeConverter.getCurrentTime()
-                    startTimeTextField.text = currentTime.lowercased()
-                    endTimeSelected = true
-                }else{
-                    
-                }
-                startTimeSelected = true
-            }
-            if sender.tag == 2{
-                if (endTimeTextField.text?.isEmpty)!{
-                    currentTime = TimeConverter.getCurrentTime()
-                    endTimeTextField.text = currentTime.lowercased()
-                    endTimeSelected = true
-                }
-                endTimeSelected = true
-            }
+        }
+        // present the popover
+        self.present(popController, animated: true, completion: nil)
+        
+        if sender.tag == 1{
+            startTimeSelected = true
+        }
+        if sender.tag == 2{
+            endTimeSelected = true
+        }
     }
     
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
@@ -534,11 +513,13 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         activeField = textView
+        descriptionLabelActivation()
         return true
     }
     
     func textViewDidEndEditing(_ textView: UITextView){
         activeField = nil
+        descriptionLabelActivation()
     }
     
     func keyboardWillBeHidden(notification: NSNotification){
@@ -550,6 +531,14 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         self.scrollView.setContentOffset(CGPoint(x:0, y:0), animated: true)
         blockSelectProject = true
         blockSelectCategory = true
+    }
+    
+    func descriptionLabelActivation(){
+        if activeField != nil || descriptionTextView.text != ""{
+            descriptionLabel.isHidden = true
+        }else{
+            descriptionLabel.isHidden = false
+        }
     }
     
     @IBAction func endTime(_ sender: UIButton) {
