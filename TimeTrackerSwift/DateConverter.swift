@@ -88,22 +88,22 @@ class DateConverter{
         return weekID
     }
     
-    static func convertDateToGMT00(datePassed:String) -> Int{
+    static func convertDateToGMT00(datePassed:String) -> Int64{
         var date = datePassed
         date = date.replacingOccurrences(of: "/", with: "")
         
         var array1 = date.components(separatedBy: "-")
         var array2 = date.components(separatedBy: "+")
-    
-        var originalDate = 0 //initial date from server in miliseconds
+        
+        //Int64 prevent Iphone 5 overflow crash
+        var originalDate:Int64 = 0 //initial date from server in miliseconds
         var miliSeconds = 0 // timezone difference in miliseconds
         var hours = 0
         
         if array1.count == 2{
             let dateString = array1[0]
-            let index = dateString.index(dateString.startIndex, offsetBy: 5)
-            //Iphone 5 bug
-            originalDate = Int(dateString.substring(from: index))!
+            let tempArray = dateString.components(separatedBy: "(")
+            originalDate = Int64(tempArray[1])!
             let gmt = array1[1]
             var convertedDate = gmt.replacingOccurrences(of: ")", with: "")
             
@@ -116,10 +116,9 @@ class DateConverter{
             
             if array2.count == 2{
                 let dateString = array2[0]
-                
-                let index = dateString.index(dateString.startIndex, offsetBy: 5)
-                originalDate = Int(dateString.substring(from: index))!
-                
+                let tempArray = dateString.components(separatedBy: "(")
+                originalDate = Int64(tempArray[1])!
+ 
                 let gmt = array2[1]
                 var convertedDate = gmt.replacingOccurrences(of: ")", with: "")
                 if convertedDate.characters.first == "0"{
