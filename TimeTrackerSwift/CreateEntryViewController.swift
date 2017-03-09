@@ -43,6 +43,10 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     var entryID = 0
     var blockSelectProject = false
     var blockSelectCategory = false
+    var day:String = "day"
+    var dayCheck:Bool = false
+    var setDayBool = "setDayBool"
+    
     
     let prefs = UserDefaults.standard
     
@@ -54,12 +58,25 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         if titleVC != ""{
             navigationTitle.title = titleVC
         }
-        if let setStartT = prefs.object(forKey: latestEnteredStartTime) as? String{
+        
+        if let temp = prefs.object(forKey: "setDayBool"){
+            dayCheck = temp as! Bool
+        }
+        
+        if prefs.object(forKey: day) != nil{
+            //erase latestEnteredEndTime if new day
+            if (String(describing: prefs.object(forKey: day)!) != DateConverter.getCurrentDate()){
+                dayCheck = false
+                prefs.set(dayCheck, forKey:"setDayBool")
+                selectedTime = ""
+                prefs.set(selectedTime, forKey: latestEnteredEndTime)
+            }
+        }
+        
+        if let setStartT = prefs.object(forKey: latestEnteredEndTime) as? String{
             startTimeTextField.text = setStartT
         }
-        if let setEndT = prefs.object(forKey: latestEnteredEndTime) as? String{
-            endTimeTextField.text = setEndT
-        }
+
         if startTimeTextField.text != "" && endTimeTextField.text != ""{
             durationResult.text = String(TimeConverter.formatDurationFromSeconds(durationInSeconds: TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!)))
             checkForNegativeDuration()
@@ -381,20 +398,22 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     func saveTime(time:String){
         selectedTime = time
         if startTimeSelected == true{
-            prefs.set(selectedTime, forKey: latestEnteredStartTime)
+            //Note:Start time does not need to be saved
             startTimeTextField.text = selectedTime
         }else if endTimeSelected == true{
+            //end time saved as start time
+            if dayCheck == false{
+            prefs.set(DateConverter.getCurrentDate(), forKey: day)
+            print(DateConverter.getCurrentDate())
+            print(String(describing: prefs.object(forKey: day)!))
+            dayCheck = true
+            prefs.set(dayCheck, forKey:"setDayBool")
+            }
             prefs.set(selectedTime, forKey: latestEnteredEndTime)
             endTimeTextField.text = selectedTime
         }
         durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
         checkForNegativeDuration()
-    }
-    
-    func saveEndTime(time:String){
-        selectedTime = time
-        prefs.set(selectedTime, forKey: latestEnteredEndTime)
-        endTimeTextField.text = selectedTime
     }
     
     func selectDate(_ sender: UITextField){
@@ -546,7 +565,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let temp = TimeConverter.getCurrentTime().lowercased()
             endTimeTextField.text = temp
             endTimeSelected = true
-            saveEndTime(time: temp)
             durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
             checkForNegativeDuration()
         }

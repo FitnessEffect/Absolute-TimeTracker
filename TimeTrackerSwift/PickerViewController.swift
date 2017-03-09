@@ -71,7 +71,6 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        
         if  projectsPassed == nil{
             return categories.count
         }else{

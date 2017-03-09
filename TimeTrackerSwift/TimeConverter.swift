@@ -138,7 +138,6 @@ class TimeConverter{
     }
     
     static func formatDurationFromSeconds(durationInSeconds:Int)-> String{
-        //let seconds = intInterval % 60
         let minutes = (durationInSeconds / 60) % 60
         let hours = (durationInSeconds / 3600)
         var tempStr = ""
