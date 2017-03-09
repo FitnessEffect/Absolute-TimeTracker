@@ -307,12 +307,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
                     var alert:UIAlertController? = nil
                     
                     if(success){
-                        alert = UIAlertController(title: "Success", message: "Entry saved", preferredStyle: UIAlertControllerStyle.alert)
-                        alert?.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
-                            (controller) in
                             self.dismiss(animated: true, completion: nil)
-                        }))
-                        self.present(alert!, animated: true, completion: nil)
                     }else{
                         alert = UIAlertController(title: "Error", message: "Could not save the entry", preferredStyle: UIAlertControllerStyle.alert)
                         alert?.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
