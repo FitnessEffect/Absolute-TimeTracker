@@ -496,7 +496,7 @@
 				);
 				INFOPLIST_FILE = TimeTrackerSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-auvergne.stefan.TimeTrackerSwift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.auvergne.stefan.TimeTrackerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTrackerSwift/TimeTrackerSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -516,7 +516,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "TIME_TRACKER=1";
 				INFOPLIST_FILE = TimeTrackerSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gmail-auvergne.stefan.TimeTrackerSwift";
+				PRODUCT_BUNDLE_IDENTIFIER = com.auvergne.stefan.TimeTrackerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TimeTrackerSwift/TimeTrackerSwift-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
