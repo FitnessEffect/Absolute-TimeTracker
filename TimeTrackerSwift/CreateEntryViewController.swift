@@ -345,7 +345,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             popController.popoverPresentationController?.delegate = self
             popController.popoverPresentationController?.sourceView = self.view
             popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
-            popController.preferredContentSize = CGSize(width: 355, height: 210)
+            popController.preferredContentSize = CGSize(width: self.view.bounds.width, height: 210)
             
             // present the popover
             self.present(popController, animated: true, completion: nil)
@@ -382,8 +382,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         popController.popoverPresentationController?.delegate = self
         popController.popoverPresentationController?.sourceView = self.view
         popController.popoverPresentationController?.sourceRect = CGRect(x: xPosition, y: yPosition, width: 0, height: 0)
-        popController.preferredContentSize = CGSize(width: 355, height: 210)
-        
+        popController.preferredContentSize = CGSize(width: self.view.bounds.width, height: 210)
         // present the popover
         self.present(popController, animated: true, completion: nil)
         
