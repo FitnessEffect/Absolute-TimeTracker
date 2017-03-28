@@ -49,10 +49,8 @@ class GraphViewController: UIViewController {
         
         let chartDataSet = BarChartDataSet(values: dataEntries, label: "Duration")
         chartDataSet.colors = [UIColor(red: 255/255, green: 122/255, blue: 21/255, alpha: 1)]
-        
         let chartData = BarChartData(dataSet: chartDataSet)
         barChartView.data = chartData
-        
         let xaxis = barChartView.xAxis
         xaxis.valueFormatter = axisFormatDelegate
     }

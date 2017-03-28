@@ -378,7 +378,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func addNewEntry(_ sender: UIBarButtonItem) {
         let createEntryVC:CreateEntryViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "createEntry") as! CreateEntryViewController
-            createEntryVC.projectsArray = projectsArray
+        createEntryVC.projectsArray = projectsArray
         present(createEntryVC, animated: true, completion: nil)
     }
     
