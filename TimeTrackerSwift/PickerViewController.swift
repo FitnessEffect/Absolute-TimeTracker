@@ -88,12 +88,10 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBAction func selectElement(_ sender: UIButton) {
         if projectsPassed == nil{
             let selectedValue = categories[pickerViewOutlet.selectedRow(inComponent: (0))]
-            
             let presenter = self.presentingViewController as! CreateEntryViewController
             presenter.saveCategory(category: selectedValue)
         }else{
             let selectedValue = projectsPassed[pickerViewOutlet.selectedRow(inComponent: (0))]
-            
             let presenter = self.presentingViewController as! CreateEntryViewController
             presenter.saveProject(project: selectedValue)
         }

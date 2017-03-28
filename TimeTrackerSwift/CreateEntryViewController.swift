@@ -76,7 +76,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         if let setStartT = prefs.object(forKey: latestEnteredEndTime) as? String{
             startTimeTextField.text = setStartT
         }
-
+        
         if startTimeTextField.text != "" && endTimeTextField.text != ""{
             durationResult.text = String(TimeConverter.formatDurationFromSeconds(durationInSeconds: TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!)))
             checkForNegativeDuration()
@@ -307,7 +307,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
                     var alert:UIAlertController? = nil
                     
                     if(success){
-                            self.dismiss(animated: true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }else{
                         alert = UIAlertController(title: "Error", message: "Could not save the entry", preferredStyle: UIAlertControllerStyle.alert)
                         alert?.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -397,11 +397,11 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         }else if endTimeSelected == true{
             //end time saved as start time
             if dayCheck == false{
-            prefs.set(DateConverter.getCurrentDate(), forKey: day)
-            print(DateConverter.getCurrentDate())
-            print(String(describing: prefs.object(forKey: day)!))
-            dayCheck = true
-            prefs.set(dayCheck, forKey:"setDayBool")
+                prefs.set(DateConverter.getCurrentDate(), forKey: day)
+                print(DateConverter.getCurrentDate())
+                print(String(describing: prefs.object(forKey: day)!))
+                dayCheck = true
+                prefs.set(dayCheck, forKey:"setDayBool")
             }
             prefs.set(selectedTime, forKey: latestEnteredEndTime)
             endTimeTextField.text = selectedTime
