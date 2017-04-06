@@ -561,6 +561,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             endTimeSelected = true
             durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
             checkForNegativeDuration()
+            startTimeSelected = false
             saveTime(time: temp)
         }
     }
