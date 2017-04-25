@@ -392,14 +392,17 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     func saveTime(time:String){
         selectedTime = time
         if startTimeSelected == true{
+            if dayCheck == false{
+                prefs.set(DateConverter.getCurrentDate(),forKey: day)
+                dayCheck = true
+                prefs.set(dayCheck, forKey:"setDayBool")
+            }
             //Note:Start time does not need to be saved
             startTimeTextField.text = selectedTime
         }else if endTimeSelected == true{
             //end time saved as start time
             if dayCheck == false{
                 prefs.set(DateConverter.getCurrentDate(), forKey: day)
-                print(DateConverter.getCurrentDate())
-                print(String(describing: prefs.object(forKey: day)!))
                 dayCheck = true
                 prefs.set(dayCheck, forKey:"setDayBool")
             }
@@ -553,6 +556,19 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             descriptionLabel.isHidden = false
         }
     }
+    
+    @IBAction func startTime(_ sender: UIButton) {
+        if activeField == nil{
+            let temp = TimeConverter.getCurrentTime().lowercased()
+            startTimeTextField.text = temp
+            startTimeSelected = true
+             durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
+            checkForNegativeDuration()
+            startTimeSelected = false
+            saveTime(time: temp)
+        }
+    }
+    
     
     @IBAction func endTime(_ sender: UIButton) {
         if activeField == nil{
