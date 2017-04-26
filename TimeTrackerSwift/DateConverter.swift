@@ -131,7 +131,7 @@ class DateConverter{
             }
         }
         miliSeconds = hours * 3600 * 1000
-        let result = (originalDate - miliSeconds)
+        let result = (originalDate - Int64(miliSeconds))
         return result
     }
     

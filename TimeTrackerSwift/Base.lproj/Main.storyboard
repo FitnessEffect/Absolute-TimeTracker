@@ -209,7 +209,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tra-te-HGo">
-                                        <rect key="frame" x="4" y="377.5" width="84" height="25"/>
+                                        <rect key="frame" x="4" y="378" width="84" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="cMF-Nh-hXQ"/>
                                             <constraint firstAttribute="width" constant="84" id="hQD-xR-QNL"/>
@@ -321,7 +321,7 @@
                                         </items>
                                     </navigationBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhL-Tw-5bm">
-                                        <rect key="frame" x="4" y="319" width="79" height="37"/>
+                                        <rect key="frame" x="4" y="319.5" width="79" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="Gvh-Ww-pRV"/>
                                             <constraint firstAttribute="width" constant="79" id="f6k-hl-Ouo"/>

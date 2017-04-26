@@ -178,11 +178,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func keyboardWasShown(notification: NSNotification){
-        let info: NSDictionary  = notification.userInfo! as NSDictionary
-        let keyboardSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject).cgRectValue.size
-        let contentInsets:UIEdgeInsets  = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
+        //let info: NSDictionary  = notification.userInfo! as NSDictionary
+        //let keyboardSize = (info.value(forKey: UIKeyboardFrameEndUserInfoKey) as AnyObject).cgRectValue.size
+        //let contentInsets:UIEdgeInsets  = UIEdgeInsetsMake(0.0, 0.0, keyboardSize.height, 0.0)
+        //scrollView.contentInset = contentInsets
+        //scrollView.scrollIndicatorInsets = contentInsets
     }
     
     func keyboardWillBeHidden(notification: NSNotification){
