@@ -70,7 +70,6 @@ class TimeConverter{
     }
     
     static func changeToAmPmFormat(timeStr:String) ->String{
-        if timeStr.characters.count == 5{
             let tempArray = timeStr.components(separatedBy: ":")
             if Int(tempArray[0])! >= 12{
                 if Int(tempArray[0]) == 12{
@@ -82,9 +81,6 @@ class TimeConverter{
             }else{
                 return tempArray[0] + ":" + tempArray[1] + " am"
             }
-        }else{
-            return timeStr
-        }
     }
     
     static func eraseLeading0(timeStr:String) -> String{
