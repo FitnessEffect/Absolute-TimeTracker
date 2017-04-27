@@ -36,9 +36,6 @@ class ScrollView: UIScrollView {
         }else if parent.dateTextField.frame.contains(point){
             parent.selectDate(parent.dateTextField)
             return false
-        }else if parent.endTimeBtn.frame.contains(point){
-            parent.endTime(parent.endTimeBtn)
-            return false
         }else if parent.startTimeTextField.frame.contains(point){
             if parent.activeField == nil{
                 parent.selectTime(parent.startTimeTextField)
