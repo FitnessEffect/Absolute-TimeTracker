@@ -208,7 +208,7 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
             let duration = TimeConverter.calculateDuration(startTime: entry.startHour, endTime: entry.endHour)
             let time = TimeConverter.formatDurationFromSeconds(durationInSeconds: duration)
             if entry.startHour.characters.contains("m"){
-                cell.entryDurationOutlet.text = time + " (" + entry.startHour + " → " + entry.endHour + ")"
+                cell.entryDurationOutlet.text = time + " (" + entry.startHour.lowercased() + " → " + entry.endHour.lowercased() + ")"
             }else{
                 cell.entryDurationOutlet.text = time + " (" + TimeConverter.eraseLeading0(timeStr:TimeConverter.formatTime(time: entry.startHour as String)) + " → " + TimeConverter.eraseLeading0(timeStr:TimeConverter.formatTime(time: entry.endHour as String)) + ")"
             }

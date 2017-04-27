@@ -117,14 +117,14 @@ class TimeConverter{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
         
-        if startTime.characters.contains("m"){
-            formattedStartTime = startTime
+        if startTime.lowercased().characters.contains("m"){
+            formattedStartTime = startTime.lowercased()
         }else{
             formattedStartTime = changeToAmPmFormat(timeStr: startTime)
         }
         
-        if endTime.characters.contains("m"){
-            formattedEndTime = endTime
+        if endTime.lowercased().characters.contains("m"){
+            formattedEndTime = endTime.lowercased()
         }else{
              formattedEndTime = changeToAmPmFormat(timeStr: endTime)
         }
