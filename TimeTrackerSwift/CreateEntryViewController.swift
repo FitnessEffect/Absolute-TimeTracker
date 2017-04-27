@@ -47,7 +47,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     var dayCheck:Bool = false
     var setDayBool = "setDayBool"
     
-    
     let prefs = UserDefaults.standard
     
     override func viewDidLoad() {
@@ -209,7 +208,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
         dictionary["EntryDate"] = dateTextField.text
         
         activeEntry = Entry(dictionary: dictionary)
-        
     }
     
     func testInternetConnection() -> Bool{
@@ -263,16 +261,10 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let timeInterval = Int(entryEndHour.timeIntervalSince(entryStartHour))
             self.activeEntry.duration = Float(timeInterval)/Float(3600)
             
-            //Convert Date to 24h format
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
-            
             //get entry date
             let formatter = DateFormatter()
             formatter.dateFormat = "MM/dd/yyyy"
             
-            print(activeEntry.entryDate)
-            print(activeEntry.creationDate)
             let timeInMilliseconds = ((formatter.date(from: activeEntry.entryDate as String))?.timeIntervalSince1970)!*1000
             let tempStr = String(timeInMilliseconds).components(separatedBy: ".")
             
@@ -409,8 +401,10 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             prefs.set(selectedTime, forKey: latestEnteredEndTime)
             endTimeTextField.text = selectedTime
         }
-        durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
-        checkForNegativeDuration()
+        if startTimeTextField.text != "" && endTimeTextField.text != ""{
+            durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
+            checkForNegativeDuration()
+        }
     }
     
     func selectDate(_ sender: UITextField){
@@ -562,8 +556,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let temp = TimeConverter.getCurrentTime().lowercased()
             startTimeTextField.text = temp
             startTimeSelected = true
-             durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
-            checkForNegativeDuration()
             startTimeSelected = false
             saveTime(time: temp)
         }
@@ -575,8 +567,6 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
             let temp = TimeConverter.getCurrentTime().lowercased()
             endTimeTextField.text = temp
             endTimeSelected = true
-            durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
-            checkForNegativeDuration()
             startTimeSelected = false
             saveTime(time: temp)
         }

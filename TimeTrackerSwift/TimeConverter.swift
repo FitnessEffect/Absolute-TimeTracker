@@ -119,11 +119,16 @@ class TimeConverter{
         
         if startTime.characters.contains("m"){
             formattedStartTime = startTime
-            formattedEndTime = endTime
         }else{
             formattedStartTime = changeToAmPmFormat(timeStr: startTime)
-            formattedEndTime = changeToAmPmFormat(timeStr: endTime)
         }
+        
+        if endTime.characters.contains("m"){
+            formattedEndTime = endTime
+        }else{
+             formattedEndTime = changeToAmPmFormat(timeStr: endTime)
+        }
+
         if formattedStartTime.isEmpty == false && formattedEndTime.isEmpty == false{
             let startT =  dateFormatter.date(from: formattedStartTime)
             let endT = dateFormatter.date(from: formattedEndTime)
