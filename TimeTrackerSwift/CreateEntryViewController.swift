@@ -353,12 +353,21 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     }
     
     func saveProject(project:Project){
-        projectTextField.text = project.projectName
+       
         //set active project
         activeProject = project
+        if projectTextField.text != ""{
+            if activeProject != nil{
+                if projectTextField.text != activeProject.projectName{
+                    categoryTextField.text = ""
+                }
+            }
+        }
+         projectTextField.text = project.projectName
     }
     
     func selectProject(_ sender:UITextField){
+        
         let xPosition = projectTextField.frame.minX + (projectTextField.frame.width/2)
         let yPosition = sender.frame.maxY
         
@@ -481,8 +490,7 @@ class CreateEntryViewController: UIViewController, UIPopoverPresentationControll
     }
     
     func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
-        durationResult.text = TimeConverter.formatDurationFromSeconds(durationInSeconds:TimeConverter.calculateDuration(startTime: startTimeTextField.text!, endTime: endTimeTextField.text!))
-        checkForNegativeDuration()
+
     }
     
     func checkForNegativeDuration(){
