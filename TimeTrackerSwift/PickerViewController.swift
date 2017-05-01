@@ -95,6 +95,7 @@ class PickerViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             let presenter = self.presentingViewController as! CreateEntryViewController
             presenter.saveProject(project: selectedValue)
         }
+        
         self.dismiss(animated: true, completion: nil)
     }
     

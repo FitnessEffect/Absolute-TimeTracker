@@ -70,6 +70,7 @@ class TimeConverter{
     }
     
     static func changeToAmPmFormat(timeStr:String) ->String{
+        
             let tempArray = timeStr.components(separatedBy: ":")
             if Int(tempArray[0])! >= 12{
                 if Int(tempArray[0]) == 12{
@@ -116,6 +117,7 @@ class TimeConverter{
         let formattedEndTime:String!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm a"
+        
         
         if startTime.lowercased().characters.contains("m"){
             formattedStartTime = startTime.lowercased()
