@@ -124,6 +124,7 @@ static ABSConnection * sharedInstance;
 
 - (void)fetchTimeEntriesForWeek:(NSNumber *)weekEndingId completionBlock:(void (^) (NSArray *))completionBlock{
     NSMutableURLRequest * request = [[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:[NSString stringWithFormat:TIMEENTRIES_URL_STRING,[ABSSessionData sessionData].userId,weekEndingId] relativeToURL:[NSURL URLWithString:BASE_URL]]];
+
     request.HTTPMethod = @"POST";
     [request setValue:@"application/json" forHTTPHeaderField:@"content-type"];
     NSData * postData = [NSJSONSerialization dataWithJSONObject:@{@"token":[ABSSessionData sessionData].token} options:NSJSONWritingPrettyPrinted error:nil];

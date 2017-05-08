@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var spinner:UIActivityIndicatorView!
     var absConnectionObj = ABSConnection()
     var activeField: UITextField?
+    var restart = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +75,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if let password = ABSSessionData.getStoredPassword(){
                 self.password.text = password
             }
+        }
+        
+        if restart == true{
+            login.sendActions(for: .touchUpInside)
+            restart = false
         }
     }
     
@@ -158,6 +164,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getProjects(){
         ABSConnection.shared().fetchProjectInfoCompletionBlock(projectCompletion)
+    }
+    
+    func setRestart(){
+        restart = true
     }
     
     func projectCompletion(response:[Any]?){
