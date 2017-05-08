@@ -286,21 +286,44 @@ class EntriesViewController: UIViewController, UITableViewDataSource, UITableVie
             UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 1})
             
             ABSConnection.shared().fetchTimeEntries(forWeek: id, completionBlock:{ (response) in
-                UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
-                self.spinner.stopAnimating()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                if response?.count != 0{
-                    for dict in response!{
-                        let entry = Entry.init(dictionary: dict as! [String : Any])
-                        self.entries.append(entry)
+                //check if response
+                if let resp = response{
+                    UIView.animate(withDuration: 0.2, animations: {self.spinner.alpha = 0})
+                    self.spinner.stopAnimating()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                  
+                    if resp.count != 0{
+                        for dict in resp{
+                            let entry = Entry.init(dictionary: dict as! [String : Any])
+                            self.entries.append(entry)
+                        }
+                        self.daysSections = self.groupEntriesByDay(entriesPassed: self.entries) as! [String : Any]
+                        ABSSessionData().timeEntriesInfo = response
+                        self.tableView.reloadData()
+                    }else{
+                        ABSSessionData().timeEntriesInfo = nil
+                        self.entries.removeAll()
+                        self.tableView.reloadData()
                     }
-                    self.daysSections = self.groupEntriesByDay(entriesPassed: self.entries) as! [String : Any]
-                    ABSSessionData().timeEntriesInfo = response
-                    self.tableView.reloadData()
                 }else{
-                    ABSSessionData().timeEntriesInfo = nil
-                    self.entries.removeAll()
-                    self.tableView.reloadData()
+                    //response is nil
+//                    ABSSessionData().timeEntriesInfo = nil
+//                    self.entries.removeAll()
+//                    self.tableView.reloadData()
+//                    let alert = UIAlertController(title: "Error", message: "Restart Application", preferredStyle: UIAlertControllerStyle.alert)
+//                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: {
+//                        (success) in
+//                        
+                        let storyboard = UIStoryboard(name:"Main", bundle:nil)
+                        let presentingVC = storyboard.instantiateViewController(withIdentifier: "login") as! LoginViewController
+                        
+                        //set variables if needed
+                        presentingVC.setRestart()
+                        
+                        self.present(presentingVC, animated: true, completion: nil)
+                        
+                   // }))
+                   // self.present(alert, animated: true, completion: nil)
                 }
             })
         }
