@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		521E4ADF1E1DFE6D009025E5 /* TimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */; };
 		52236A7F1E2E6DD000F1D3AD /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */; };
-		52236ACB1E31367C00F1D3AD /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52236AC61E31366600F1D3AD /* Charts.framework */; };
-		52236ACC1E31367C00F1D3AD /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 52236AC61E31366600F1D3AD /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		52683FFD1E01A2B00047B283 /* TimePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */; };
 		52683FFF1E0229DE0047B283 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52683FFE1E0229DE0047B283 /* Reachability.swift */; };
 		528A9EC11E36D9C90040FA71 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A9EC01E36D9C90040FA71 /* ScrollView.swift */; };
@@ -36,37 +34,6 @@
 		696A3D8E425B5C7C01E3192E /* Pods_TimeTrackerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B91E52161A37131C9361BC7B /* Pods_TimeTrackerSwift.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		52236AC51E31366600F1D3AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F241D8110E600722320;
-			remoteInfo = Charts;
-		};
-		52236AC71E31366600F1D3AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06B120D51D811E6200D14B02;
-			remoteInfo = ChartsRealm;
-		};
-		52236AC91E31366600F1D3AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 06165F2E1D8110E600722320;
-			remoteInfo = ChartsTests;
-		};
-		52236ACD1E31367C00F1D3AD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06165F231D8110E600722320;
-			remoteInfo = Charts;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		52236A921E2FA97400F1D3AD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -74,7 +41,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				52236ACC1E31367C00F1D3AD /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +51,6 @@
 		28E3395B134A200ADCF15DA7 /* Pods-TimeTrackerSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeTrackerSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeTrackerSwift/Pods-TimeTrackerSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		521E4ADE1E1DFE6D009025E5 /* TimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeConverter.swift; sourceTree = "<group>"; };
 		52236A7E1E2E6DD000F1D3AD /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
-		52236ABF1E31366600F1D3AD /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		52683FFC1E01A2B00047B283 /* TimePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerViewController.swift; sourceTree = "<group>"; };
 		52683FFE1E0229DE0047B283 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		528A9EC01E36D9C90040FA71 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
@@ -124,7 +89,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52236ACB1E31367C00F1D3AD /* Charts.framework in Frameworks */,
 				696A3D8E425B5C7C01E3192E /* Pods_TimeTrackerSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,20 +122,9 @@
 			name = Converter;
 			sourceTree = "<group>";
 		};
-		52236AC01E31366600F1D3AD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				52236AC61E31366600F1D3AD /* Charts.framework */,
-				52236AC81E31366600F1D3AD /* ChartsRealm.framework */,
-				52236ACA1E31366600F1D3AD /* ChartsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		52D252691DFEEEF2000A0289 = {
 			isa = PBXGroup;
 			children = (
-				52236ABF1E31366600F1D3AD /* Charts.xcodeproj */,
 				52D252741DFEEEF2000A0289 /* TimeTrackerSwift */,
 				52D252731DFEEEF2000A0289 /* Products */,
 				3C1825822C3F115542465A30 /* Pods */,
@@ -265,7 +218,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				52236ACE1E31367C00F1D3AD /* PBXTargetDependency */,
 			);
 			name = TimeTrackerSwift;
 			productName = TimeTrackerSwift;
@@ -306,42 +258,12 @@
 			mainGroup = 52D252691DFEEEF2000A0289;
 			productRefGroup = 52D252731DFEEEF2000A0289 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 52236AC01E31366600F1D3AD /* Products */;
-					ProjectRef = 52236ABF1E31366600F1D3AD /* Charts.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				52D252711DFEEEF2000A0289 /* TimeTrackerSwift */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		52236AC61E31366600F1D3AD /* Charts.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Charts.framework;
-			remoteRef = 52236AC51E31366600F1D3AD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		52236AC81E31366600F1D3AD /* ChartsRealm.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ChartsRealm.framework;
-			remoteRef = 52236AC71E31366600F1D3AD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		52236ACA1E31366600F1D3AD /* ChartsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ChartsTests.xctest;
-			remoteRef = 52236AC91E31366600F1D3AD /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		52D252701DFEEEF2000A0289 /* Resources */ = {
@@ -440,14 +362,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		52236ACE1E31367C00F1D3AD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 52236ACD1E31367C00F1D3AD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		52D252791DFEEEF2000A0289 /* Main.storyboard */ = {
